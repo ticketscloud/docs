@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+import "generic.proto";
+
+/**
+ * Discount modifier type.
+ */
+enum ModType {
+  PROMOTION = 0;
+}
+
+message ModPromotionType {
+  message LevelsPercentage {
+    message Level {
+      uint64 level = 1;
+      Percentage value = 2;
+    }
+    repeated Level levels = 1;
+  }
+
+  message LevelsFix {
+    message Level {
+      uint64 level = 1;
+      uint64 value = 2;
+    }
+    repeated Level levels = 1;
+  }
+
+  Lifetime lifetime = 1;
+  repeated string sets = 2;  // Ticket sets discount is related to
+  oneof discount {
+    Percentage discount_percentage = 3;  // Percentage discount
+    uint64 discount_fix = 4;  // Fixed discount
+    LevelsPercentage levels_percentage = 5;  // Levels for percentage discount
+    LevelsFix levels_fix = 6;  // Levels for fixed discount
+  }
+}
+
+
+message Mod {
+  string id = 1;
+  ModType type = 2;
+  oneof settings {
+    ModPromotionType promotion = 10;  // Promotion settings
+  }
+}

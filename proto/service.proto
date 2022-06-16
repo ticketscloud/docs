@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "artists.proto";
+import "events.proto";
+import "geo.proto";
+import "meta_events.proto";
+import "seats.proto";
+import "venues.proto";
+import "tags.proto";
+
+service Simple {
+  rpc Countries(CountriesRequest) returns (stream Country);
+  rpc Cities(CitiesRequest) returns (stream City);
+  rpc Venues(VenuesRequest) returns (stream Venue);
+  rpc Maps(MapsRequest) returns (stream Map);
+  rpc Categories(CategoriesRequest) returns (stream Category);
+  rpc Tags(TagsRequest) returns (stream Tag);
+  rpc Artists(ArtistsRequest) returns (stream Artist);
+  rpc Events(EventsRequest) returns (stream Event);
+  rpc MetaEvents(MetaEventsRequest) returns (stream MetaEvent);
+  rpc Seats(SeatsRequest) returns (stream Seat);
+}

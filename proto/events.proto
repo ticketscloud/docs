@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+import "generic.proto";
+import "google/protobuf/any.proto";
+import "mods.proto";
+
+/**
+ * Request for Events.
+ */
+message EventsRequest {
+  enum Status {
+    ANY = 0;  // No filtering by status
+    STAND_BY = 1;  // Sales are temporarily suspended
+    PUBLIC = 2;  // Sales are going
+  }
+
+  repeated string ids = 1;  // Filtering by Event id
+  oneof meta_event {
+    string meta = 2;  // Filtering by Event group id
+    bool without_meta = 10;  // Filter to get only single Events, that are not included into groups
+  }
+  string org = 3;  // Filtering by organizer id
+  Status status = 4;  // Filtering by Event status
+  LiftimeFilter lifetime = 5;
+}
+
+/**
+ * Supported Event statuses.
+ */
+enum EventStatus {
+  STAND_BY = 0;  // Sales are temporarily suspended
+  PUBLIC = 1;  // Sales are going
+}
+
+message Deal {
+  string id = 1;  // Deal id
+  Percentage org = 2;  // Share (percent) of the organizer
+  Percentage agent = 3;  // Share of nominal ticket price got by agent
+  Percentage extra = 4;  // Share in excess of nominal ticket price, got by agent
+}
+
+message LegalRu {
+  enum Type {
+    LTD = 0;  // Limited Liability Company
+    IP = 1;  // Individual Enterpreneur
+  }
+  string id = 1;  // Legal id
+  Type type = 2;  // Legal type
+  string name = 3;  // Name
+  string inn = 4;  // Tax ID
+  string address = 5;  // Legal address
+  oneof ogrns {
+    string ogrn = 6;  // State registry number
+    string ogrnip = 7;  // Individual Enterpreneur state registry number
+  }
+}
+
+/**
+ * Ticket set structure.
+ */
+message TicketSet {
+  message Rule {
+    enum Type {
+      SIMPLE = 0;  // Simple rule: sales rules are going one after another.
+    }
+    message SimpleType {
+      uint64 price = 1;  // Price for ticket set
+    }
+    string id = 1;  // Sales rule id
+    Type type = 2;  // Rule type
+    Lifetime lifetime = 3;
+    oneof types {
+      SimpleType simple = 10;
+    }
+  }
+
+  string id = 1;  // Set id
+  string name = 2;  // Set name
+  string description = 3;  // [O] Description
+  int32 pos = 4;  // Set ordinal number
+  string sector = 5;  // [O] sector id
+  bool with_seats = 6;  // Whether tickets are bound to seats
+
+  uint32 amount = 7;  // Total amount of tickets in set
+  uint32 amount_vacant = 8;  // Amount of tickets available for sale in set
+
+  repeated Rule rules = 10;  // Price rules for set
+}
+
+/**
+ * Smart tickets options.
+ */
+enum SmartTicketSetting {
+  NONE = 0;  // Smart tickets are not used on the Event
+  ONLY = 1;  // Smart tickets are the only used on the Event
+  ANY = 2;  // Both smart and usual tickets can be sold for the Event
+}
+
+/**
+ * Event structure.
+ */
+message Event {
+  string id = 1;  // Event id
+  string meta = 2;  // [O] Event group id (absent for single Events)
+  string name = 3;  // Event title
+  string description = 4;  // [O] description
+
+  EventStatus status = 5;  // status
+  string org = 6;  // Organizer id
+  string venue = 7;  // Venue id
+  string map = 8;  // [O] Auditorium map id
+  Lifetime lifetime = 9;  // Event start and end datetime
+
+  string category = 10;  // Event category id
+  repeated string tags = 11;  // Event genres id
+  repeated string artists = 12;  // id of artists participating
+
+  string age_rating = 13;  // [O] Age restrictions
+  Media media = 14;  // Media covers
+
+  oneof commissions {
+    Deal deal = 17;  // [O] deal, if request is performed by agent
+    Percentage org_extra = 18;  // [O] commission percentage, if request is performed by organizer
+  }
+
+  oneof legal {
+    LegalRu legal_ru = 20;  // [O] seller's bank details
+  };
+
+  repeated TicketSet sets = 30;  // ticket sets
+  uint32 tickets_amount = 31;  // total amount of tickets in the Event
+  uint32 tickets_amount_vacant = 32;  // amount of vacant tickets in the Event
+
+  SmartTicketSetting smart_tickets = 40;  // smart tickets settings
+
+  repeated Mod mods = 50;  // extra info on discounts
+
+  google.protobuf.Any additional = 255; // reserved field(s)
+}

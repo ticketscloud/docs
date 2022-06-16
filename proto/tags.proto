@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+/**
+ * Request for categories.
+ */
+message CategoriesRequest {
+  repeated string ids = 1;  // Filtering by category id
+}
+
+message Category {
+  string id = 1;  // Category id
+  string name = 2;  // Category name
+}
+
+message TagsRequest {
+  repeated string ids = 1;  // Genre id
+}
+
+message Tag {
+  string id = 1;  // Genre id
+  string category = 2;  // Category id
+  string name = 3;  // Genre name
+  bool generic = 4;  // Is generic
+}

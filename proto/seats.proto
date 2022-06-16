@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+/**
+ * Request for seats.
+ */
+message SeatsRequest {
+  enum Status {
+    ANY = 0;  // Any ticket status
+    VACANT = 1;  // Ticket is available for sell
+    RESERVED = 2;  // Ticket is reserved
+    SOLD = 3;  // Ticket is sold
+  }
+
+  string sector = 2;
+  string row = 3;
+  string number = 4;
+
+  string event = 10;  // Filtering by Event id (required)
+  repeated string sets = 11;
+  repeated string tickets = 12;
+  Status status = 13;
+}
+
+enum TicketStatus {
+  VACANT = 0;  // Ticket is available for sell
+  RESERVED = 1;  // Ticket is reserved
+  SOLD = 2;  // Ticket is sold
+}
+
+message Seat {
+  string sector = 2;  // Sector id
+  string row = 3;  // Row number
+  string number = 4;  // Seat number
+
+  string event = 10;  // Event id
+  string set = 11;  // Ticket set id
+  string ticket = 12;  // Ticket id
+  TicketStatus status = 13;  // Ticket status
+  google.protobuf.Timestamp ticket_reserved_till = 14;  // [O] Reserve expiration time, only for tickets wits status='RESERVED'
+}

@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "generic.proto";
+
+/**
+ * Request for countries.
+ */
+message CountriesRequest {
+  repeated string ids = 1;  // Filtering by country id
+}
+
+message Country {
+  string id = 1;  // Country id
+  string name = 2;  // Name
+  string currency = 3;  // Currency
+  string iso = 4;  // ISO 3166-1 code
+  string iso3 = 5;  // ISO 3166-3 code
+  uint32 iso_numeric = 6;  // ISO 3166-1 numeric code
+}
+
+/**
+ * Request for cities.
+ */
+message CitiesRequest {
+  repeated int32 ids = 1;  // Filtering by city id
+  string name = 2;  // Filtering ny city name
+  string suggest = 3;  // Prefix search
+  string country = 4;  // Filtering by country
+}
+
+message City {
+  int32 id = 1;  // City id
+  string name = 2;  // Name
+  string country = 3;  // Country id
+  string timezone = 4;  // Timezone
+  Coordinates coordinates = 5;  // Coordinates
+  int64 population = 6;  // City population
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+/**
+ * Request for Artists.
+ */
+message ArtistsRequest {
+  repeated string ids = 1;  // Filtering by Artist id
+}
+
+/**
+ * Artist structure.
+ */
+message Artist {
+  string id = 1;  // Artist id (oid)
+  string name = 2;  // Artist name
+}

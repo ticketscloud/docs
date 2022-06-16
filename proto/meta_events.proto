@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
+
+import "generic.proto";
+
+
+/**
+ * Request for Event groups.
+ */
+message MetaEventsRequest {
+  repeated string ids = 1;  // Filtering by group id
+}
+
+message MetaEvent {
+  string id = 1;  // Group id
+
+  string name = 2;  // Group name
+  string description = 3;  // [O] Description
+
+  string org = 4;  // Organizer id
+  string age_rating = 5;  // [O] Age restrictions
+  Media media = 6;  // Media cover
+
+  google.protobuf.Timestamp first_start = 7;  // Time when the first Event begins
+  google.protobuf.Timestamp last_finish = 8;  // Time when the last Event ends
+
+  google.protobuf.Any additional = 255; // Reserved field(s)
+}

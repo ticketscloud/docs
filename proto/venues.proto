@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+import "generic.proto";
+
+/**
+ * Request for venues.
+ */
+message VenuesRequest {
+  repeated string ids = 1;  // Filtering by venue id
+}
+
+message Venue {
+  string id = 1;  // Venue id
+  string name = 2;  // Name
+  string description = 3;  // [O] Description
+  int32 city = 4;  // City id
+  string address = 5;  // [O] Address
+  Coordinates coordinates = 6;  // [O] Geo coordinates
+}
+
+/**
+ * Request for maps.
+ */
+message MapsRequest {
+  repeated string ids = 1;  // Filtering by map id
+  string venue = 2;  // Filtering by venue id to get all auditoria maps
+}
+
+message Map {
+  message Sector {
+    string id = 1;  // Sector id
+    string name = 2;  // Sector name
+    string description = 3;  // [O] description
+    bool with_seats = 4;  // Whether sector has seats
+  }
+
+  message Seat {
+    message Point {  // Seat coordinates on the map
+      int32 x = 1;
+      int32 y = 2;
+      int32 r = 3;  // radius
+    }
+    string sector = 1;
+    string row = 2;  // Row number
+    string number = 3;  // Seat number
+    Point point = 4;
+  }
+
+  string id = 1;  // Map id
+  string name = 2;  // Map name
+  string description = 3;  // [O] Description
+  string venue = 4;  // Venue id
+
+  repeated Sector sectors = 5;  // Sectors list
+  repeated Seat seats = 6;  // Seats list
+  map<string, string> svg = 7;  // svg maps
+}
