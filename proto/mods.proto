@@ -12,22 +12,22 @@ enum ModType {
 message ModPromotionType {
   message LevelsPercentage {
     message Level {
-      uint64 level = 1;
-      Percentage value = 2;
+      uint64 level = 1;  // The amount of money in the order from which the discount is applied
+      Percentage value = 2;  // Percentage discount
     }
     repeated Level levels = 1;
   }
 
   message LevelsFix {
     message Level {
-      uint64 level = 1;
-      uint64 value = 2;
+      uint64 level = 1;  // The amount of money in the order from which the discount is applied
+      uint64 value = 2;  // Fixed discount
     }
     repeated Level levels = 1;
   }
 
-  Lifetime lifetime = 1;
-  repeated string sets = 2;  // Ticket sets discount is related to
+  Lifetime lifetime = 1;  // [O] Lifetime of promotion (empty is always)
+  repeated string sets = 2;  // [O] Ticket sets discount is related to (empty is all)
   oneof discount {
     Percentage discount_percentage = 3;  // Percentage discount
     uint64 discount_fix = 4;  // Fixed discount
@@ -39,7 +39,7 @@ message ModPromotionType {
 
 message Mod {
   string id = 1;
-  ModType type = 2;
+  ModType type = 2;  // Type of modifier
   oneof settings {
     ModPromotionType promotion = 10;  // Promotion settings
   }
