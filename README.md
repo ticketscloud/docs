@@ -15,6 +15,10 @@
 
 [API reference](doc/docs.md)
 
+NB:
+- Если данные (например, названия стран и городов) доступны на нескольких языках, можно указать предпочитаемый, добавив в метаданные запроса заголовок `preferred-language` (см. пример кода).
+- Следует учитывать, что значение поля по умолчанию (обычно нулевое) передаётся [внутренней структурой Protobuf](https://developers.google.com/protocol-buffers/docs/proto3#default) как отсутствие значения.
+
 ## Точки доступа (endpoints)
 
 - Стейдж (тестовая): `simple.stage.freetc.net:443`
@@ -50,7 +54,7 @@
 
     # Можем вызвать любой из сервисов как метод stub
     req = events_pb2.EventsRequest(ids=None)
-    events = stub.Events(req, metadata=[('authorization', api_key)])
+    events = stub.Events(req, metadata=[('authorization', api_key), ('preferred-language', 'ru')])
     for ev in events:
         print(ev)
     ```
