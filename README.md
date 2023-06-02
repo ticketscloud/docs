@@ -50,7 +50,7 @@ NB:
     endpoint = 'simple.stage.freetc.net:443'  # Точка доступа -- тестовая
     credentials = grpc.ssl_channel_credentials()
     ch = grpc.secure_channel(endpoint, credentials)
-    stub = proto.simple.service_pb2_grpc.SimpleStub(ch)
+    stub = service_pb2_grpc.SimpleStub(ch)
 
     # Можем вызвать любой из сервисов как метод stub
     req = events_pb2.EventsRequest(ids=None)
