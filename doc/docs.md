@@ -18,6 +18,8 @@
 
     - [EventStatus](#-EventStatus)
     - [EventsRequest.Status](#-EventsRequest-Status)
+    - [LegalRu.IPTaxes](#-LegalRu-IPTaxes)
+    - [LegalRu.LTDTaxes](#-LegalRu-LTDTaxes)
     - [LegalRu.Type](#-LegalRu-Type)
     - [SmartTicketSetting](#-SmartTicketSetting)
     - [TicketSet.Rule.Type](#-TicketSet-Rule-Type)
@@ -224,6 +226,9 @@ Request for Events.
 | address | [string](#string) |  | Legal address |
 | ogrn | [string](#string) |  | State registry number |
 | ogrnip | [string](#string) |  | Individual Enterpreneur state registry number |
+| ltd | [LegalRu.LTDTaxes](#LegalRu-LTDTaxes) |  | Options for LTD |
+| ip | [LegalRu.IPTaxes](#LegalRu-IPTaxes) |  | Options for individual enterpreneur |
+| nds | [bool](#bool) | optional | Apply NDS (Russian VAT) |
 
 
 
@@ -313,6 +318,32 @@ Supported Event statuses.
 
 
 
+<a name="-LegalRu-IPTaxes"></a>
+
+### LegalRu.IPTaxes
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| IP_USN | 0 | Simplified taxes scheme |
+| IP_OSN | 1 | General taxes scheme |
+| IP_NPD | 2 | Tax on professional income |
+| IP_PSN | 3 | Patent tax scheme |
+
+
+
+<a name="-LegalRu-LTDTaxes"></a>
+
+### LegalRu.LTDTaxes
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LTD_USN | 0 | Simplified taxes scheme |
+| LTD_OSN | 1 | General taxes scheme |
+
+
+
 <a name="-LegalRu-Type"></a>
 
 ### LegalRu.Type
@@ -322,6 +353,7 @@ Supported Event statuses.
 | ---- | ------ | ----------- |
 | LTD | 0 | Limited Liability Company |
 | IP | 1 | Individual Enterpreneur |
+| SE | 2 | Self-employed |
 
 
 
@@ -630,7 +662,7 @@ Request for Event groups.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  |  |
-| type | [ModType](#ModType) |  |  |
+| type | [ModType](#ModType) |  | Type of modifier |
 | promotion | [ModPromotionType](#ModPromotionType) |  | Promotion settings |
 
 
@@ -646,8 +678,8 @@ Request for Event groups.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| lifetime | [Lifetime](#Lifetime) |  |  |
-| sets | [string](#string) | repeated | Ticket sets discount is related to |
+| lifetime | [Lifetime](#Lifetime) |  | [O] Lifetime of promotion (empty is always) |
+| sets | [string](#string) | repeated | [O] Ticket sets discount is related to (empty is all) |
 | discount_percentage | [Percentage](#Percentage) |  | Percentage discount |
 | discount_fix | [uint64](#uint64) |  | Fixed discount |
 | levels_percentage | [ModPromotionType.LevelsPercentage](#ModPromotionType-LevelsPercentage) |  | Levels for percentage discount |
@@ -681,8 +713,8 @@ Request for Event groups.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| level | [uint64](#uint64) |  |  |
-| value | [uint64](#uint64) |  |  |
+| level | [uint64](#uint64) |  | The amount of money in the order from which the discount is applied |
+| value | [uint64](#uint64) |  | Fixed discount |
 
 
 
@@ -712,8 +744,8 @@ Request for Event groups.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| level | [uint64](#uint64) |  |  |
-| value | [Percentage](#Percentage) |  |  |
+| level | [uint64](#uint64) |  | The amount of money in the order from which the discount is applied |
+| value | [Percentage](#Percentage) |  | Percentage discount |
 
 
 

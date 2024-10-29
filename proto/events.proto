@@ -43,6 +43,17 @@ message LegalRu {
   enum Type {
     LTD = 0;  // Limited Liability Company
     IP = 1;  // Individual Enterpreneur
+    SE = 2;  // Self-employed
+  }
+  enum LTDTaxes {
+    LTD_USN = 0;  // Simplified taxes scheme
+    LTD_OSN = 1;  // General taxes scheme
+  }
+  enum IPTaxes {
+    IP_USN = 0;  // Simplified taxes scheme
+    IP_OSN = 1;  // General taxes scheme
+    IP_NPD = 2;  // Tax on professional income
+    IP_PSN = 3;  // Patent tax scheme
   }
   string id = 1;  // Legal id
   Type type = 2;  // Legal type
@@ -53,6 +64,11 @@ message LegalRu {
     string ogrn = 6;  // State registry number
     string ogrnip = 7;  // Individual Enterpreneur state registry number
   }
+  oneof taxes {  // Taxes scheme
+    LTDTaxes ltd = 8;  // Options for LTD
+    IPTaxes ip = 9;  // Options for individual enterpreneur
+  }
+  optional bool nds = 10;  // Apply NDS (Russian VAT)
 }
 
 /**
