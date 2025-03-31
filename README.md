@@ -1,58 +1,67 @@
-## Что такое tc-simple
-Это простой сервис интеграции с Ticketscloud. Предоставляет альтернативный способ совместной работы по сравнению с размещением виджета Ticketscloud на сайте продажи билетов. Представляет собой gRPC сервер, поддерживающий запросы на получение данных, необходимых для отображения формы заказа билетов. Сам заказ в Ticketscloud создаётся посредством [RESTful API](https://ticketscloud.readthedocs.io).
+Вот переведённый текст с заменой *Ticketscloud* на *XTIX*:
 
-## Какие данные предоставляются?
+---
 
-[Сервисы:](doc/docs.md#simple)
-- список мероприятий ([Events](doc/docs.md#Event));
-- список групп периодических и повторяющихся мероприятий ([MetaEvents](doc/docs.md#MetaEvent));
-- классификация мероприятий: теги ([Tags](doc/docs.md#Tag)) и категории ([Categories](doc/docs.md#CategoriesRequest));
-- площадки проведения мероприятий ([Venues](doc/docs.md#Venue), схемы расположения ([Maps](doc/docs.md#Map)) зрительских мест ([Seats](doc/docs.md#Seat));
-- справочник стран ([Countries](doc/docs.md#CountriesRequest)) и городов ([Cities](doc/docs.md#CitiesRequest));
-- сведения об артистах ([Artists](doc/docs.md#Artist)).
+## What is xtix-simple
 
-## gRPC API -- поддерживаемые запросы и структуры данных
+This is a lightweight integration service for XTIX. It provides an alternative way to work together compared to embedding the XTIX widget on a ticket sales website. It is a gRPC server that supports requests for retrieving data needed to display a ticket ordering form. The actual order in XTIX is created using the [RESTful API](https://ticketscloud.readthedocs.io).
+
+## What data is provided?
+
+[Services:](doc/docs.md#simple)  
+- List of events ([Events](doc/docs.md#Event))  
+- List of periodic and recurring event groups ([MetaEvents](doc/docs.md#MetaEvent))  
+- Event classification: tags ([Tags](doc/docs.md#Tag)) and categories ([Categories](doc/docs.md#CategoriesRequest))  
+- Event venues ([Venues](doc/docs.md#Venue)), seating maps ([Maps](doc/docs.md#Map)), and seats ([Seats](doc/docs.md#Seat))  
+- Country ([Countries](doc/docs.md#CountriesRequest)) and city ([Cities](doc/docs.md#CitiesRequest)) directories  
+- Artist information ([Artists](doc/docs.md#Artist))
+
+## gRPC API – Supported Requests and Data Structures
 
 [API reference](doc/docs.md)
 
-NB:
-- Если данные (например, названия стран и городов) доступны на нескольких языках, можно указать предпочитаемый, добавив в метаданные запроса заголовок `preferred-language` (см. пример кода).
-- Следует учитывать, что значение поля по умолчанию (обычно нулевое) передаётся [внутренней структурой Protobuf](https://developers.google.com/protocol-buffers/docs/proto3#default) как отсутствие значения.
+**Note:**
+- If data (e.g. country or city names) is available in multiple languages, you can specify the preferred one by adding the `preferred-language` header to the request metadata (see code example).
+- Keep in mind that default values (usually zero) are interpreted by the [Protobuf internal structure](https://developers.google.com/protocol-buffers/docs/proto3#default) as absence of a value.
 
-## Точки доступа (endpoints)
+## Endpoints
 
-- Стейдж (тестовая): `simple.stage.freetc.net:443`
-- Продакшен: `simple.ticketscloud.com:443`
+- Staging (test): `simple.stage.freetc.net:443`  
+- Production: `simple.ticketscloud.com:443`
 
-## Пример клиента на Python:
+## Example Python client
 
-1. Получаем в ЛК или у менеджеров Ticketscloud ключ доступа (API key).
+1. Obtain an API key from the XTIX dashboard or from your account manager.
 
-2. Устанавливаем компилятор .proto-файлов:
+2. Install the `.proto` file compiler:
 
-    ```pip install grpcio-tools```
+    ```bash
+    pip install grpcio-tools
+    ```
 
-3. Компилируем .proto-файлы в обёртки на Python:
-    
-    ```mkdir proto/build && python -m grpc_tools.protoc -Iproto --python_out=proto --grpc_python_out=proto ./proto/*.proto```
+3. Compile the `.proto` files into Python wrappers:
 
-    В каталоге proto/build появятся *.py-файлы.
+    ```bash
+    mkdir proto/build && python -m grpc_tools.protoc -Iproto --python_out=proto --grpc_python_out=proto ./proto/*.proto
+    ```
 
-4. Запускаем в каталоге proto/build код на Python:
+    The compiled `*.py` files will appear in the `proto/build` directory.
+
+4. Run Python code in the `proto/build` directory:
 
     ```python
     import grpc
-    
+
     import service_pb2_grpc
     import events_pb2
 
-    api_key = ''  # Ключ доступа
-    endpoint = 'simple.stage.freetc.net:443'  # Точка доступа -- тестовая
+    api_key = ''  # Access key
+    endpoint = 'simple.stage.freetc.net:443'  # Test endpoint
     credentials = grpc.ssl_channel_credentials()
     ch = grpc.secure_channel(endpoint, credentials)
     stub = service_pb2_grpc.SimpleStub(ch)
 
-    # Можем вызвать любой из сервисов как метод stub
+    # You can call any of the services as a stub method
     req = events_pb2.EventsRequest(ids=None)
     events = stub.Events(req, metadata=[('authorization', api_key), ('preferred-language', 'ru')])
     for ev in events:
