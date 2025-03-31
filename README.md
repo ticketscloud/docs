@@ -1,6 +1,3 @@
-Вот переведённый текст с заменой *Ticketscloud* на *XTIX*:
-
----
 
 ## What is xtix-simple
 
