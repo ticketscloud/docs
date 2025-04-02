@@ -23,8 +23,8 @@ This is a lightweight integration service for XTIX. It provides an alternative w
 
 ## Endpoints
 
-- Staging (test): `simple.stage.freetc.net:443`  
-- Production: `simple.ticketscloud.com:443`
+- Staging (test): `simple.xtix.dev:443`  
+- Production: `simple.xtix.ai:443`
 
 ## Example Python client
 
