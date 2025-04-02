@@ -6,7 +6,7 @@
 - [artists.proto](#artists-proto)
     - [Artist](#-Artist)
     - [ArtistsRequest](#-ArtistsRequest)
-  
+
 - [events.proto](#events-proto)
     - [Deal](#-Deal)
     - [Event](#-Event)
@@ -15,13 +15,13 @@
     - [TicketSet](#-TicketSet)
     - [TicketSet.Rule](#-TicketSet-Rule)
     - [TicketSet.Rule.SimpleType](#-TicketSet-Rule-SimpleType)
-  
+
     - [EventStatus](#-EventStatus)
     - [EventsRequest.Status](#-EventsRequest-Status)
     - [LegalRu.Type](#-LegalRu-Type)
     - [SmartTicketSetting](#-SmartTicketSetting)
     - [TicketSet.Rule.Type](#-TicketSet-Rule-Type)
-  
+
 - [generic.proto](#generic-proto)
     - [Coordinates](#-Coordinates)
     - [Lifetime](#-Lifetime)
@@ -29,17 +29,17 @@
     - [Media](#-Media)
     - [Percentage](#-Percentage)
     - [TimestampFilter](#-TimestampFilter)
-  
+
 - [geo.proto](#geo-proto)
     - [CitiesRequest](#-CitiesRequest)
     - [City](#-City)
     - [CountriesRequest](#-CountriesRequest)
     - [Country](#-Country)
-  
+
 - [meta_events.proto](#meta_events-proto)
     - [MetaEvent](#-MetaEvent)
     - [MetaEventsRequest](#-MetaEventsRequest)
-  
+
 - [mods.proto](#mods-proto)
     - [Mod](#-Mod)
     - [ModPromotionType](#-ModPromotionType)
@@ -47,25 +47,25 @@
     - [ModPromotionType.LevelsFix.Level](#-ModPromotionType-LevelsFix-Level)
     - [ModPromotionType.LevelsPercentage](#-ModPromotionType-LevelsPercentage)
     - [ModPromotionType.LevelsPercentage.Level](#-ModPromotionType-LevelsPercentage-Level)
-  
+
     - [ModType](#-ModType)
-  
+
 - [seats.proto](#seats-proto)
     - [Seat](#-Seat)
     - [SeatsRequest](#-SeatsRequest)
-  
+
     - [SeatsRequest.Status](#-SeatsRequest-Status)
     - [TicketStatus](#-TicketStatus)
-  
+
 - [service.proto](#service-proto)
     - [Simple](#-Simple)
-  
+
 - [tags.proto](#tags-proto)
     - [CategoriesRequest](#-CategoriesRequest)
     - [Category](#-Category)
     - [Tag](#-Tag)
     - [TagsRequest](#-TagsRequest)
-  
+
 - [venues.proto](#venues-proto)
     - [Map](#-Map)
     - [Map.Seat](#-Map-Seat)
@@ -75,7 +75,7 @@
     - [MapsRequest](#-MapsRequest)
     - [Venue](#-Venue)
     - [VenuesRequest](#-VenuesRequest)
-  
+
 - [Scalar Value Types](#scalar-value-types)
 
 
@@ -117,13 +117,13 @@ Request for Artists.
 
 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
 
 
 
@@ -285,7 +285,7 @@ Ticket set structure.
 
 
 
- 
+
 
 
 <a name="-EventStatus"></a>
@@ -348,11 +348,11 @@ Smart tickets options.
 | SIMPLE | 0 | Simple rule: sales rules are going one after another. |
 
 
- 
 
- 
 
- 
+
+
+
 
 
 
@@ -461,13 +461,13 @@ Geo coordinates
 
 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
 
 
 
@@ -550,13 +550,13 @@ Request for countries.
 
 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
 
 
 
@@ -604,13 +604,13 @@ Request for Event groups.
 
 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
 
 
 
@@ -719,7 +719,7 @@ Request for Event groups.
 
 
 
- 
+
 
 
 <a name="-ModType"></a>
@@ -732,11 +732,11 @@ Discount modifier type.
 | PROMOTION | 0 |  |
 
 
- 
 
- 
 
- 
+
+
+
 
 
 
@@ -789,7 +789,7 @@ Request for seats.
 
 
 
- 
+
 
 
 <a name="-SeatsRequest-Status"></a>
@@ -818,11 +818,11 @@ Request for seats.
 | SOLD | 2 | Ticket is sold |
 
 
- 
 
- 
 
- 
+
+
+
 
 
 
@@ -832,11 +832,11 @@ Request for seats.
 ## service.proto
 
 
- 
 
- 
 
- 
+
+
+
 
 
 <a name="-Simple"></a>
@@ -857,7 +857,7 @@ Request for seats.
 | MetaEvents | [.MetaEventsRequest](#MetaEventsRequest) | [.MetaEvent](#MetaEvent) stream |  |
 | Seats | [.SeatsRequest](#SeatsRequest) | [.Seat](#Seat) stream |  |
 
- 
+
 
 
 
@@ -931,13 +931,13 @@ Request for categories.
 
 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
 
 
 
@@ -1068,6 +1068,7 @@ Request for maps.
 | city | [int32](#int32) |  | City id |
 | address | [string](#string) |  | [O] Address |
 | coordinates | [Coordinates](#Coordinates) |  | [O] Geo coordinates |
+| with_mosbilet | [bool](#bool) |  | [O] Whether venue is affiliated with Mosbilet |
 
 
 
@@ -1088,13 +1089,13 @@ Request for venues.
 
 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
 
 
 
@@ -1117,4 +1118,3 @@ Request for venues.
 | <a name="bool" /> bool |  | bool | boolean | boolean | bool | bool | boolean | TrueClass/FalseClass |
 | <a name="string" /> string | A string must always contain UTF-8 encoded or 7-bit ASCII text. | string | String | str/unicode | string | string | string | String (UTF-8) |
 | <a name="bytes" /> bytes | May contain any arbitrary sequence of bytes. | string | ByteString | str | []byte | ByteString | string | String (ASCII-8BIT) |
-

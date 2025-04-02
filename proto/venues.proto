@@ -16,6 +16,7 @@ message Venue {
   int32 city = 4;  // City id
   string address = 5;  // [O] Address
   Coordinates coordinates = 6;  // [O] Geo coordinates
+  bool with_mosbilet = 41;  // Whether venue has Mosbilet affiliation
 }
 
 /**
