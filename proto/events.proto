@@ -1,12 +1,11 @@
 syntax = "proto3";
 
+// package v2;
+
 import "generic.proto";
 import "google/protobuf/any.proto";
 import "mods.proto";
 
-/**
- * Request for Events.
- */
 message EventsRequest {
   enum Status {
     ANY = 0;  // No filtering by status
@@ -24,12 +23,9 @@ message EventsRequest {
   LiftimeFilter lifetime = 5;
 }
 
-/**
- * Supported Event statuses.
- */
 enum EventStatus {
   STAND_BY = 0;  // Sales are temporarily suspended
-  PUBLIC = 1;  // Sales are going
+  PUBLIC = 1;  // Sales are going on
 }
 
 message Deal {
@@ -55,6 +51,12 @@ message LegalRu {
     IP_NPD = 2;  // Tax on professional income
     IP_PSN = 3;  // Patent tax scheme
   }
+  enum VAT {
+    VAT_0 = 0;
+    VAT_5 = 1;
+    VAT_7 = 2;
+    VAT_20 = 3;
+  }
   string id = 1;  // Legal id
   Type type = 2;  // Legal type
   string name = 3;  // Name
@@ -69,11 +71,9 @@ message LegalRu {
     IPTaxes ip = 9;  // Options for individual enterpreneur
   }
   optional bool nds = 10;  // Apply NDS (Russian VAT)
+  optional VAT vat_rate = 11;  // VAT percentage
 }
 
-/**
- * Ticket set structure.
- */
 message TicketSet {
   message Rule {
     enum Type {
@@ -103,18 +103,12 @@ message TicketSet {
   repeated Rule rules = 10;  // Price rules for set
 }
 
-/**
- * Smart tickets options.
- */
 enum SmartTicketSetting {
   NONE = 0;  // Smart tickets are not used on the Event
   ONLY = 1;  // Smart tickets are the only used on the Event
   ANY = 2;  // Both smart and usual tickets can be sold for the Event
 }
 
-/**
- * Event structure.
- */
 message Event {
   string id = 1;  // Event id
   string meta = 2;  // [O] Event group id (absent for single Events)
@@ -133,6 +127,7 @@ message Event {
 
   string age_rating = 13;  // [O] Age restrictions
   Media media = 14;  // Media covers
+  bool open_date = 15;  // Flag of open (unknown) start date
 
   oneof commissions {
     Deal deal = 17;  // [O] deal, if request is performed by agent

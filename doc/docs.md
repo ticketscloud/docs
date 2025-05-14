@@ -21,6 +21,7 @@
     - [LegalRu.IPTaxes](#-LegalRu-IPTaxes)
     - [LegalRu.LTDTaxes](#-LegalRu-LTDTaxes)
     - [LegalRu.Type](#-LegalRu-Type)
+    - [LegalRu.VAT](#-LegalRu-VAT)
     - [SmartTicketSetting](#-SmartTicketSetting)
     - [TicketSet.Rule.Type](#-TicketSet-Rule-Type)
 
@@ -116,19 +117,6 @@ Request for Artists.
 | ids | [string](#string) | repeated | Filtering by Artist id |
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <a name="events-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -176,6 +164,7 @@ Event structure.
 | artists | [string](#string) | repeated | id of artists participating |
 | age_rating | [string](#string) |  | [O] Age restrictions |
 | media | [Media](#Media) |  | Media covers |
+| open_date | [bool](#bool) |  | Flag of open (unknown) start date |
 | deal | [Deal](#Deal) |  | [O] deal, if request is performed by agent |
 | org_extra | [Percentage](#Percentage) |  | [O] commission percentage, if request is performed by organizer |
 | legal_ru | [LegalRu](#LegalRu) |  | [O] seller&#39;s bank details |
@@ -229,6 +218,7 @@ Request for Events.
 | ltd | [LegalRu.LTDTaxes](#LegalRu-LTDTaxes) |  | Options for LTD |
 | ip | [LegalRu.IPTaxes](#LegalRu-IPTaxes) |  | Options for individual enterpreneur |
 | nds | [bool](#bool) | optional | Apply NDS (Russian VAT) |
+| vat_rate | [LegalRu.VAT](#LegalRu-VAT) | optional | VAT percentage |
 
 
 
@@ -301,7 +291,7 @@ Supported Event statuses.
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | STAND_BY | 0 | Sales are temporarily suspended |
-| PUBLIC | 1 | Sales are going |
+| PUBLIC | 1 | Sales are going on |
 
 
 
@@ -357,10 +347,24 @@ Supported Event statuses.
 
 
 
+<a name="-LegalRu-VAT"></a>
+
+### LegalRu.VAT
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| VAT_0 | 0 |  |
+| VAT_5 | 1 |  |
+| VAT_7 | 2 |  |
+| VAT_20 | 3 |  |
+
+
+
 <a name="-SmartTicketSetting"></a>
 
 ### SmartTicketSetting
-Smart tickets options.
+
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
