@@ -1,16 +1,12 @@
 syntax = "proto3";
 
-/**
- * Request for Artists.
- */
+package v2;
+
 message ArtistsRequest {
-  repeated string ids = 1;  // Filtering by Artist id
+  repeated string ids = 1;  // фильтр по id артиста
 }
 
-/**
- * Artist structure.
- */
 message Artist {
-  string id = 1;  // Artist id (oid)
-  string name = 2;  // Artist name
+  string id = 1;  // id артиста
+  string name = 2;  // название артиста
 }

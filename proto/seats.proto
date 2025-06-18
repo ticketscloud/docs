@@ -1,42 +1,41 @@
 syntax = "proto3";
 
+package v2;
+
 import "google/protobuf/timestamp.proto";
 
-/**
- * Request for seats.
- */
 message SeatsRequest {
   enum Status {
-    ANY = 0;  // Any ticket status
-    VACANT = 1;  // Ticket is available for sell
-    RESERVED = 2;  // Ticket is reserved
-    SOLD = 3;  // Ticket is sold
+    ANY = 0;  // любой статус билета
+    VACANT = 1;  // билет доступен к продаже
+    RESERVED = 2;  // билет забронирован
+    SOLD = 3;  // билет продан
   }
 
   string sector = 2;
   string row = 3;
   string number = 4;
 
-  string event = 10;  // Filtering by Event id (required)
+  string event = 10;  // фильтр по id мероприятия, обязательный параметр
   repeated string sets = 11;
   repeated string tickets = 12;
   Status status = 13;
 }
 
 enum TicketStatus {
-  VACANT = 0;  // Ticket is available for sell
-  RESERVED = 1;  // Ticket is reserved
-  SOLD = 2;  // Ticket is sold
+  VACANT = 0;  // билет доступен к продаже
+  RESERVED = 1;  // билет забронирован
+  SOLD = 2;  // билет продан
 }
 
 message Seat {
-  string sector = 2;  // Sector id
-  string row = 3;  // Row number
-  string number = 4;  // Seat number
+  string sector = 2;  // id сектора
+  string row = 3;  // номер ряда
+  string number = 4;  // номер места
 
-  string event = 10;  // Event id
-  string set = 11;  // Ticket set id
-  string ticket = 12;  // Ticket id
-  TicketStatus status = 13;  // Ticket status
-  google.protobuf.Timestamp ticket_reserved_till = 14;  // [O] Reserve expiration time, only for tickets wits status='RESERVED'
+  string event = 10;  // id мероприятия
+  string set = 11;  // id категории билета
+  string ticket = 12;  // id билета
+  TicketStatus status = 13;  // статус билета
+  google.protobuf.Timestamp ticket_reserved_till = 14;  // [O] время до которого билет забронирован, заполнено только у билетов в статусе 'RESERVED'
 }

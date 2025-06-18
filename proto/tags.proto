@@ -1,24 +1,23 @@
 syntax = "proto3";
 
-/**
- * Request for categories.
- */
+package v2;
+
 message CategoriesRequest {
-  repeated string ids = 1;  // Filtering by category id
+  repeated string ids = 1;  // фильтр по id категории
 }
 
 message Category {
-  string id = 1;  // Category id
-  string name = 2;  // Category name
+  string id = 1;  // id категории
+  string name = 2;  // название категории
 }
 
 message TagsRequest {
-  repeated string ids = 1;  // Genre id
+  repeated string ids = 1;  // фильтр по id жанра
 }
 
 message Tag {
-  string id = 1;  // Genre id
-  string category = 2;  // Category id
-  string name = 3;  // Genre name
-  bool generic = 4;  // Is generic
+  string id = 1;  // id жанра
+  string category = 2;  // id категории
+  string name = 3;  // название жанра
+  bool generic = 4;
 }

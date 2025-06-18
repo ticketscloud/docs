@@ -1,58 +1,54 @@
 syntax = "proto3";
 
+package v2;
+
 import "generic.proto";
 
-/**
- * Request for venues.
- */
 message VenuesRequest {
-  repeated string ids = 1;  // Filtering by venue id
+  repeated string ids = 1;  // фильтр по id площадки
 }
 
 message Venue {
-  string id = 1;  // Venue id
-  string name = 2;  // Name
-  string description = 3;  // [O] Description
-  int32 city = 4;  // City id
-  string address = 5;  // [O] Address
-  Coordinates coordinates = 6;  // [O] Geo coordinates
-  bool with_mosbilet = 41;  // Whether venue has Mosbilet affiliation
+  string id = 1;  // id площадки
+  string name = 2;  // название площадки
+  string description = 3;  // [O] описание площадки
+  int32 city = 4;  // id города
+  string address = 5;  // [O] адрес площадки
+  Coordinates coordinates = 6;  // [O] координаты площадки
+  bool with_mosbilet = 41;  // признак наличия интеграции с mosbilet.ru
 }
 
-/**
- * Request for maps.
- */
 message MapsRequest {
-  repeated string ids = 1;  // Filtering by map id
-  string venue = 2;  // Filtering by venue id to get all auditoria maps
+  repeated string ids = 1;  // фильтр по id схемы зала
+  string venue = 2;  // фильтр по id площадки, можно получить все схемы зала конкретной площадки
 }
 
 message Map {
   message Sector {
-    string id = 1;  // Sector id
-    string name = 2;  // Sector name
-    string description = 3;  // [O] description
-    bool with_seats = 4;  // Whether sector has seats
+    string id = 1;  // id сектора
+    string name = 2;  // название сектора
+    string description = 3;  // [O] описание сектора
+    bool with_seats = 4;  // признак сектора с рассадкой
   }
 
   message Seat {
-    message Point {  // Seat coordinates on the map
+    message Point {  // координаты места на схеме зала
       int32 x = 1;
       int32 y = 2;
       int32 r = 3;  // radius
     }
     string sector = 1;
-    string row = 2;  // Row number
-    string number = 3;  // Seat number
+    string row = 2;  // номер ряда
+    string number = 3;  // номер места
     Point point = 4;
   }
 
-  string id = 1;  // Map id
-  string name = 2;  // Map name
-  string description = 3;  // [O] Description
-  string venue = 4;  // Venue id
+  string id = 1;  // id схемы зала
+  string name = 2;  // название схемы зала
+  string description = 3;  // [O] описание схемы зала
+  string venue = 4;  // id площадки
 
-  repeated Sector sectors = 5;  // Sectors list
-  repeated Seat seats = 6;  // Seats list
-  map<string, string> svg = 7;  // svg maps
+  repeated Sector sectors = 5;  // перечисление секторов
+  repeated Seat seats = 6;  // перечисление мест
+  map<string, string> svg = 7;  // svg со схемами
 }

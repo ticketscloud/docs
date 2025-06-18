@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-// package v2;
+package v2;
 
 import "generic.proto";
 import "google/protobuf/any.proto";
@@ -8,48 +8,48 @@ import "mods.proto";
 
 message EventsRequest {
   enum Status {
-    ANY = 0;  // No filtering by status
-    STAND_BY = 1;  // Sales are temporarily suspended
-    PUBLIC = 2;  // Sales are going
+    ANY = 0;  // без фильтрации по состоянию
+    STAND_BY = 1;  // продажи остановлены
+    PUBLIC = 2;  // продажи активны
   }
 
-  repeated string ids = 1;  // Filtering by Event id
+  repeated string ids = 1;  // фильтр по id мероприятий
   oneof meta_event {
-    string meta = 2;  // Filtering by Event group id
-    bool without_meta = 10;  // Filter to get only single Events, that are not included into groups
+    string meta = 2;  // фильтр по id конкретных групп мероприятий
+    bool without_meta = 10;  // фильтр для получения только одиночных мероприятий, не объединенных ни в какие группы
   }
-  string org = 3;  // Filtering by organizer id
-  Status status = 4;  // Filtering by Event status
+  string org = 3;  // фильтр по id организаторов мероприятий
+  Status status = 4;  // фильтр по статусу мероприятий
   LiftimeFilter lifetime = 5;
 }
 
 enum EventStatus {
-  STAND_BY = 0;  // Sales are temporarily suspended
-  PUBLIC = 1;  // Sales are going on
+  STAND_BY = 0;  // продажи остановлены
+  PUBLIC = 1;  // продажи активны
 }
 
 message Deal {
-  string id = 1;  // Deal id
-  Percentage org = 2;  // Share (percent) of the organizer
-  Percentage agent = 3;  // Share of nominal ticket price got by agent
-  Percentage extra = 4;  // Share in excess of nominal ticket price, got by agent
+  string id = 1;  // id сделки
+  Percentage org = 2;  // % организатора
+  Percentage agent = 3;  // % распространителя снизу от номинала билета
+  Percentage extra = 4;  // % распространителя сверху от номинала билета
 }
 
 message LegalRu {
   enum Type {
-    LTD = 0;  // Limited Liability Company
-    IP = 1;  // Individual Enterpreneur
-    SE = 2;  // Self-employed
+    LTD = 0;  // ООО
+    IP = 1;  // ИП
+    SE = 2;  // Самозанятый
   }
   enum LTDTaxes {
-    LTD_USN = 0;  // Simplified taxes scheme
-    LTD_OSN = 1;  // General taxes scheme
+    LTD_USN = 0;
+    LTD_OSN = 1;
   }
   enum IPTaxes {
-    IP_USN = 0;  // Simplified taxes scheme
-    IP_OSN = 1;  // General taxes scheme
-    IP_NPD = 2;  // Tax on professional income
-    IP_PSN = 3;  // Patent tax scheme
+    IP_USN = 0;
+    IP_OSN = 1;
+    IP_NPD = 2;
+    IP_PSN = 3;
   }
   enum VAT {
     VAT_0 = 0;
@@ -57,94 +57,95 @@ message LegalRu {
     VAT_7 = 2;
     VAT_20 = 3;
   }
-  string id = 1;  // Legal id
-  Type type = 2;  // Legal type
-  string name = 3;  // Name
-  string inn = 4;  // Tax ID
-  string address = 5;  // Legal address
+
+  string id = 1;  // id реквизитов
+  Type type = 2;  // типа юр. лица
+  string name = 3;  // название юр. лица
+  string inn = 4;  // ИНН
+  string address = 5;  // юридический адрес
   oneof ogrns {
-    string ogrn = 6;  // State registry number
-    string ogrnip = 7;  // Individual Enterpreneur state registry number
+    string ogrn = 6;  // ОГРН
+    string ogrnip = 7;  // ОРГНИП
+  };
+  oneof taxes {
+    LTDTaxes ltd = 8;
+    IPTaxes ip = 9;
   }
-  oneof taxes {  // Taxes scheme
-    LTDTaxes ltd = 8;  // Options for LTD
-    IPTaxes ip = 9;  // Options for individual enterpreneur
-  }
-  optional bool nds = 10;  // Apply NDS (Russian VAT)
-  optional VAT vat_rate = 11;  // VAT percentage
+  optional bool nds = 10;
+  optional VAT vat_rate = 11;
 }
 
 message TicketSet {
   message Rule {
     enum Type {
-      SIMPLE = 0;  // Simple rule: sales rules are going one after another.
+      SIMPLE = 0;  // простой тип правила, правила продажи сменяют друг друга с течением времени
     }
     message SimpleType {
-      uint64 price = 1;  // Price for ticket set
+      uint64 price = 1;  // цена правила продажи категории
     }
-    string id = 1;  // Sales rule id
-    Type type = 2;  // Rule type
+    string id = 1;  // id правила продажи категории
+    Type type = 2;  // тип правила продажи категории
     Lifetime lifetime = 3;
     oneof types {
       SimpleType simple = 10;
     }
   }
 
-  string id = 1;  // Set id
-  string name = 2;  // Set name
-  string description = 3;  // [O] Description
-  int32 pos = 4;  // Set ordinal number
-  string sector = 5;  // [O] sector id
-  bool with_seats = 6;  // Whether tickets are bound to seats
+  string id = 1;  // id категории
+  string name = 2;  // название категории
+  string description = 3;  // [O] описание категории
+  int32 pos = 4;  // порядковый номер категории
+  string sector = 5;  // [O] id сектора
+  bool with_seats = 6;  // признак категории с рассадкой
 
-  uint32 amount = 7;  // Total amount of tickets in set
-  uint32 amount_vacant = 8;  // Amount of tickets available for sale in set
+  uint32 amount = 7;  // количество всего билетов в категории
+  uint32 amount_vacant = 8;  // количество свободных к продаже билетов в категории
 
-  repeated Rule rules = 10;  // Price rules for set
+  repeated Rule rules = 10;  // правила изменения цен на категорию
 }
 
 enum SmartTicketSetting {
-  NONE = 0;  // Smart tickets are not used on the Event
-  ONLY = 1;  // Smart tickets are the only used on the Event
-  ANY = 2;  // Both smart and usual tickets can be sold for the Event
+  NONE = 0;  // смарт-билеты не используются на мероприятии
+  ONLY = 1;  // на мероприятие возможна продажа только смарт-билетов
+  ANY = 2;  // на мероприятие можно продавать и электронные билеты и смарт-билеты
 }
 
 message Event {
-  string id = 1;  // Event id
-  string meta = 2;  // [O] Event group id (absent for single Events)
-  string name = 3;  // Event title
-  string description = 4;  // [O] description
+  string id = 1;  // id мероприятия
+  string meta = 2;  // [O] id группы мероприятий (отсутствует, если мероприятие одиночное)
+  string name = 3;  // название мероприятия
+  string description = 4;  // [O] описание мероприятия
 
-  EventStatus status = 5;  // status
-  string org = 6;  // Organizer id
-  string venue = 7;  // Venue id
-  string map = 8;  // [O] Auditorium map id
-  Lifetime lifetime = 9;  // Event start and end datetime
+  EventStatus status = 5;  // статус мероприятия
+  string org = 6;  // id организатора
+  string venue = 7;  // id площадки
+  string map = 8;  // [O] id схемы зала
+  Lifetime lifetime = 9;  // дата и время начала и конца мероприятия
 
-  string category = 10;  // Event category id
-  repeated string tags = 11;  // Event genres id
-  repeated string artists = 12;  // id of artists participating
+  string category = 10;  // id категории мероприятия
+  repeated string tags = 11;  // id жанров мероприятия
+  repeated string artists = 12;  // id артистов мероприятия
 
-  string age_rating = 13;  // [O] Age restrictions
-  Media media = 14;  // Media covers
-  bool open_date = 15;  // Flag of open (unknown) start date
+  string age_rating = 13;  // [O] возрастной рейтинг мероприятия
+  Media media = 14;  // обложки
+  bool open_date = 15;  // признак мероприятия с открытой датой начала
 
   oneof commissions {
-    Deal deal = 17;  // [O] deal, if request is performed by agent
-    Percentage org_extra = 18;  // [O] commission percentage, if request is performed by organizer
+    Deal deal = 17;  // [O] сделка, если мероприятие запрашивает распространитель
+    Percentage org_extra = 18;  // [O] % сервисного сбора организатора, если мероприятие запрашивает организатор
   }
 
   oneof legal {
-    LegalRu legal_ru = 20;  // [O] seller's bank details
+    LegalRu legal_ru = 20;  // [O] реквизиты продавца мероприятия
   };
 
-  repeated TicketSet sets = 30;  // ticket sets
-  uint32 tickets_amount = 31;  // total amount of tickets in the Event
-  uint32 tickets_amount_vacant = 32;  // amount of vacant tickets in the Event
+  repeated TicketSet sets = 30;  // категории билетов
+  uint32 tickets_amount = 31;  // количество всего билетов в мероприятии
+  uint32 tickets_amount_vacant = 32;  // количество свободных к продаже билетов в мероприятии
 
-  SmartTicketSetting smart_tickets = 40;  // smart tickets settings
+  SmartTicketSetting smart_tickets = 40;  // настройки смарт-билетов
 
-  repeated Mod mods = 50;  // extra info on discounts
+  repeated Mod mods = 50;  // дополнительная информация по скидкам на мероприятие
 
-  google.protobuf.Any additional = 255; // reserved field(s)
+  google.protobuf.Any additional = 255; // служебное поле
 }

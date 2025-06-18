@@ -1,22 +1,26 @@
 syntax = "proto3";
 
+package v2;
+
+import "healthz.proto";
 import "artists.proto";
 import "events.proto";
 import "geo.proto";
 import "meta_events.proto";
 import "seats.proto";
-import "venues.proto";
 import "tags.proto";
+import "venues.proto";
 
 service Simple {
-  rpc Countries(CountriesRequest) returns (stream Country);
-  rpc Cities(CitiesRequest) returns (stream City);
-  rpc Venues(VenuesRequest) returns (stream Venue);
-  rpc Maps(MapsRequest) returns (stream Map);
-  rpc Categories(CategoriesRequest) returns (stream Category);
-  rpc Tags(TagsRequest) returns (stream Tag);
+  rpc Healtz(HealtzRequest) returns (HealtzResponse);
   rpc Artists(ArtistsRequest) returns (stream Artist);
+  rpc Categories(CategoriesRequest) returns (stream Category);
+  rpc Cities(CitiesRequest) returns (stream City);
+  rpc Countries(CountriesRequest) returns (stream Country);
   rpc Events(EventsRequest) returns (stream Event);
+  rpc Maps(MapsRequest) returns (stream Map);
   rpc MetaEvents(MetaEventsRequest) returns (stream MetaEvent);
   rpc Seats(SeatsRequest) returns (stream Seat);
+  rpc Tags(TagsRequest) returns (stream Tag);
+  rpc Venues(VenuesRequest) returns (stream Venue);
 }

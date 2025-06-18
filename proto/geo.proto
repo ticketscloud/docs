@@ -1,38 +1,34 @@
 syntax = "proto3";
 
+package v2;
+
 import "generic.proto";
 
-/**
- * Request for countries.
- */
 message CountriesRequest {
-  repeated string ids = 1;  // Filtering by country id
+  repeated string ids = 1;  // фильтр по id страны
 }
 
 message Country {
-  string id = 1;  // Country id
-  string name = 2;  // Name
-  string currency = 3;  // Currency
-  string iso = 4;  // ISO 3166-1 code
-  string iso3 = 5;  // ISO 3166-3 code
-  uint32 iso_numeric = 6;  // ISO 3166-1 numeric code
+  string id = 1;  // id страны
+  string name = 2;  // название страны
+  string currency = 3;  // валюта страны
+  string iso = 4;  // код страны по ISO 3166-1
+  string iso3 = 5;  // код страны по ISO 3166-3
+  uint32 iso_numeric = 6;  // код страны по ISO 3166-1 numeric
 }
 
-/**
- * Request for cities.
- */
 message CitiesRequest {
-  repeated int32 ids = 1;  // Filtering by city id
-  string name = 2;  // Filtering ny city name
-  string suggest = 3;  // Prefix search
-  string country = 4;  // Filtering by country
+  repeated int32 ids = 1;  // фильтр по id гороода
+  string name = 2;  // фильтр по названию города
+  string suggest = 3;  // фильтр по части названия города
+  string country = 4;  // фильтр по стране
 }
 
 message City {
-  int32 id = 1;  // City id
-  string name = 2;  // Name
-  string country = 3;  // Country id
-  string timezone = 4;  // Timezone
-  Coordinates coordinates = 5;  // Coordinates
-  int64 population = 6;  // City population
+  int32 id = 1;  // id города
+  string name = 2;  // название города
+  string country = 3;  // id страны
+  string timezone = 4;  // таймзона города
+  Coordinates coordinates = 5;  // координаты города
+  int64 population = 6;  // численность населения города
 }

@@ -1,46 +1,63 @@
 syntax = "proto3";
 
+package v2;
+
 import "generic.proto";
 
-/**
- * Discount modifier type.
- */
 enum ModType {
-  PROMOTION = 0;
+  PROMOTION = 0;  // модификатор-промоакция
 }
 
 message ModPromotionType {
   message LevelsPercentage {
     message Level {
-      uint64 level = 1;  // The amount of money in the order from which the discount is applied
-      Percentage value = 2;  // Percentage discount
+      uint64 level = 1;  // количество денег в заказе с которого применяется скидка
+      Percentage value = 2;  // процент скидки
     }
     repeated Level levels = 1;
   }
 
   message LevelsFix {
     message Level {
-      uint64 level = 1;  // The amount of money in the order from which the discount is applied
-      uint64 value = 2;  // Fixed discount
+      uint64 level = 1;  // количество денег в заказе с которого применяется скидка
+      uint64 value = 2;  // фиксированная скидка
     }
     repeated Level levels = 1;
   }
 
-  Lifetime lifetime = 1;  // [O] Lifetime of promotion (empty is always)
-  repeated string sets = 2;  // [O] Ticket sets discount is related to (empty is all)
+  message LevelsCountPercentage {
+    message Level {
+      uint64 level = 1;  // количество билетов в заказе с которого применяется скидка
+      Percentage value = 2;  // процент скидки
+    }
+    repeated Level levels = 1;
+  }
+
+  message LevelsCountFix {
+    message Level {
+      uint64 level = 1;  // количество билетов в заказе с которого применяется скидка
+      uint64 value = 2;  // фиксированная скидка
+    }
+    repeated Level levels = 1;
+  }
+
+  Lifetime lifetime = 1;  // время действия промоакции
+  repeated string sets = 2;  // список категорий билетов, к которым применяется промоакция
   oneof discount {
-    Percentage discount_percentage = 3;  // Percentage discount
-    uint64 discount_fix = 4;  // Fixed discount
-    LevelsPercentage levels_percentage = 5;  // Levels for percentage discount
-    LevelsFix levels_fix = 6;  // Levels for fixed discount
+    Percentage discount_percentage = 3;  // процент скидки
+    uint64 discount_fix = 4;  // фиксированная скидка
+    LevelsPercentage levels_percentage = 5;  // "лесенка" процентов
+    LevelsFix levels_fix = 6;  // "лесенка" фиксированных значений
+    LevelsCountPercentage levels_count_percentage = 7;  // "лесенка" процентов по билетам
+    LevelsCountFix levels_count_fix = 8;  // "лесенка" фиксированных значений по билетам
   }
 }
 
 
 message Mod {
   string id = 1;
-  ModType type = 2;  // Type of modifier
+  ModType type = 2;  // тип модификатора
   oneof settings {
-    ModPromotionType promotion = 10;  // Promotion settings
+    ModPromotionType promotion = 10;  // промоакции
   }
 }

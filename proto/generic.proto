@@ -1,18 +1,20 @@
 syntax = "proto3";
 
+package v2;
+
 import "google/protobuf/timestamp.proto";
 
-/**
- * Geo coordinates
- */
 message Coordinates {
   double longitude = 1;
   double latitude = 2;
 }
 
 message Percentage {
-  int32 units = 1; // Whole units part of the amount
-  fixed32 nanos = 2; // Nano units of the amount (10^-9). Must be same sign as units
+  // Whole units part of the amount
+  int32 units = 1;
+  // Nano units of the amount (10^-9)
+  // Must be same sign as units
+  fixed32 nanos = 2;
 }
 
 message Media {
