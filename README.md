@@ -24,6 +24,52 @@ NB:
 - Стейдж (тестовая): `simple.stage.freetc.net:443`
 - Продакшен: `simple.ticketscloud.com:443`
 
+## Пример клиента на PHP (спасибо https://github.com/feldwebel)
+
+Должно быть установлено расширение grpc, компилятор protobuf и собран grpc_php_plugin.
+
+Компилируем .proto файлы:
+```
+protoc --proto_path=proto --php_out=generated --grpc_out=generated --plugin=protoc-gen-grpc=<путь к grpc_php_plugin> proto/*.proto
+```
+
+client.php:
+```
+#!/usr/bin/env php
+<?php
+require "vendor/autoload.php";
+// Если используем composer, можно добавить в composer.json
+// "autoload": {
+//   "psr-4": {
+//     "V2\\": "php_generated/V2/",
+//     "GPBMetadata\\": "php_generated/GPBMetadata/"
+//   }
+// }
+
+use Grpc\ChannelCredentials;
+use V2\SimpleClient;
+use V2\CountriesRequest;
+
+$host = "simple.stage.freetc.net:443";
+$key = "<key>";  // Вписать API ключ
+$cred = [
+    "credentials" => ChannelCredentials::createSsl(), // защищённое соединение
+];
+$opt = [
+    "authorization" => [$key], // ключ упакован в массив
+];
+
+$client = new SimpleClient($host, $cred);
+
+$countriesRequest = new CountriesRequest()->setIds(["ZM"]);
+
+$countries = $client->Countries($countriesRequest, $opt)->responses();
+
+foreach ($countries as $country) {
+    var_dump($country->getName());
+}
+```
+
 ## Пример клиента на Python:
 
 1. Получаем в ЛК или у менеджеров Ticketscloud ключ доступа (API key).
@@ -33,7 +79,7 @@ NB:
     ```pip install grpcio-tools```
 
 3. Компилируем .proto-файлы в обёртки на Python:
-    
+
     ```mkdir proto/build && python -m grpc_tools.protoc -Iproto --python_out=proto --grpc_python_out=proto ./proto/*.proto```
 
     В каталоге proto/build появятся *.py-файлы.
@@ -42,7 +88,7 @@ NB:
 
     ```python
     import grpc
-    
+
     import service_pb2_grpc
     import events_pb2
 
