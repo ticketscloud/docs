@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package v2;
+
+message HealtzRequest {}
+
+message HealtzResponse {
+    string status = 1;
+}
