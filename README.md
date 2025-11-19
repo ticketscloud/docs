@@ -39,7 +39,7 @@ This is a lightweight integration service for XTIX. It provides an alternative w
 3. Compile the `.proto` files into Python wrappers:
 
     ```bash
-    mkdir proto/build && python -m grpc_tools.protoc -Iproto --python_out=proto --grpc_python_out=proto ./proto/*.proto
+    mkdir proto/build && python -m grpc_tools.protoc -Iproto --python_out=proto/build --grpc_python_out=proto/build ./proto/*.proto
     ```
 
     The compiled `*.py` files will appear in the `proto/build` directory.

@@ -3,6 +3,7 @@ syntax = "proto3";
 import "generic.proto";
 import "google/protobuf/any.proto";
 import "mods.proto";
+import "google/protobuf/timestamp.proto";
 
 /**
  * Request for Events.
@@ -22,6 +23,7 @@ message EventsRequest {
   string org = 3;  // Filtering by organizer id
   Status status = 4;  // Filtering by Event status
   LiftimeFilter lifetime = 5;
+  TimestampFilter updated_at = 6;
 }
 
 /**
@@ -65,6 +67,7 @@ message TicketSet {
     }
     message SimpleType {
       uint64 price = 1;  // Price for ticket set
+      string currency = 2; // Currency for ticket set
     }
     string id = 1;  // Sales rule id
     Type type = 2;  // Rule type
@@ -126,6 +129,9 @@ message Event {
   oneof legal {
     LegalRu legal_ru = 20;  // [O] seller's bank details
   };
+  google.protobuf.Timestamp created_at = 21;
+  google.protobuf.Timestamp updated_at = 22;
+  string widget_token = 23;
 
   repeated TicketSet sets = 30;  // ticket sets
   uint32 tickets_amount = 31;  // total amount of tickets in the Event
