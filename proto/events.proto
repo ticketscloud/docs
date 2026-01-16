@@ -56,6 +56,7 @@ message LegalRu {
     VAT_5 = 1;
     VAT_7 = 2;
     VAT_20 = 3;
+    VAT_22 = 4;
   }
 
   string id = 1;  // id реквизитов

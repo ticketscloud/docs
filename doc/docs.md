@@ -373,12 +373,13 @@
 ### LegalRu.VAT
 
 
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| VAT_0 | 0 |  |
-| VAT_5 | 1 |  |
-| VAT_7 | 2 |  |
-| VAT_20 | 3 |  |
+| Name   | Number | Description |
+|--------|--------| ----------- |
+| VAT_0  | 0      |  |
+| VAT_5  | 1      |  |
+| VAT_7  | 2      |  |
+| VAT_20 | 3      |  |
+| VAT_22 | 4      |  |
 
 
 
