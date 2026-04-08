@@ -5,6 +5,7 @@ package v2;
 import "generic.proto";
 import "google/protobuf/any.proto";
 import "mods.proto";
+import "google/protobuf/timestamp.proto";
 
 message EventsRequest {
   enum Status {
@@ -147,6 +148,8 @@ message Event {
   SmartTicketSetting smart_tickets = 40;  // настройки смарт-билетов
 
   repeated Mod mods = 50;  // дополнительная информация по скидкам на мероприятие
+
+  google.protobuf.Timestamp updated_at = 70;  // дата и время последнего обновления информации о мероприятии
 
   google.protobuf.Any additional = 255; // служебное поле
 }
