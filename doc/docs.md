@@ -194,6 +194,7 @@
 | tickets_amount_vacant | [uint32](#uint32) |  | количество свободных к продаже билетов в мероприятии |
 | smart_tickets | [SmartTicketSetting](#v2-SmartTicketSetting) |  | настройки смарт-билетов |
 | mods | [Mod](#v2-Mod) | repeated | дополнительная информация по скидкам на мероприятие |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | дата и время последнего обновления информации о мероприятии |
 | additional | [google.protobuf.Any](#google-protobuf-Any) |  | служебное поле |
 
 
@@ -1282,4 +1283,3 @@
 | <a name="bool" /> bool |  | bool | boolean | boolean | bool | bool | boolean | TrueClass/FalseClass |
 | <a name="string" /> string | A string must always contain UTF-8 encoded or 7-bit ASCII text. | string | String | str/unicode | string | string | string | String (UTF-8) |
 | <a name="bytes" /> bytes | May contain any arbitrary sequence of bytes. | string | ByteString | str | []byte | ByteString | string | String (ASCII-8BIT) |
-
