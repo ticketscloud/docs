@@ -1,8 +1,7 @@
 syntax = "proto3";
 
-package v2;
+package v3;
 
-import "healthz.proto";
 import "artists.proto";
 import "events.proto";
 import "geo.proto";
@@ -12,7 +11,6 @@ import "tags.proto";
 import "venues.proto";
 
 service Simple {
-  rpc Healtz(HealtzRequest) returns (HealtzResponse);
   rpc Artists(ArtistsRequest) returns (stream Artist);
   rpc Categories(CategoriesRequest) returns (stream Category);
   rpc Cities(CitiesRequest) returns (stream City);

@@ -4,88 +4,84 @@
 ## Table of Contents
 
 - [artists.proto](#artists-proto)
-    - [Artist](#v2-Artist)
-    - [ArtistsRequest](#v2-ArtistsRequest)
+    - [Artist](#v3-Artist)
+    - [ArtistsRequest](#v3-ArtistsRequest)
   
 - [events.proto](#events-proto)
-    - [Deal](#v2-Deal)
-    - [Event](#v2-Event)
-    - [EventsRequest](#v2-EventsRequest)
-    - [LegalRu](#v2-LegalRu)
-    - [TicketSet](#v2-TicketSet)
-    - [TicketSet.Rule](#v2-TicketSet-Rule)
-    - [TicketSet.Rule.SimpleType](#v2-TicketSet-Rule-SimpleType)
+    - [Event](#v3-Event)
+    - [Event.Deal](#v3-Event-Deal)
+    - [Event.LegalRu](#v3-Event-LegalRu)
+    - [Event.TicketSet](#v3-Event-TicketSet)
+    - [Event.TicketSet.Rule](#v3-Event-TicketSet-Rule)
+    - [Event.TicketSet.Rule.SimpleType](#v3-Event-TicketSet-Rule-SimpleType)
+    - [EventsRequest](#v3-EventsRequest)
   
-    - [EventStatus](#v2-EventStatus)
-    - [EventsRequest.Status](#v2-EventsRequest-Status)
-    - [LegalRu.IPTaxes](#v2-LegalRu-IPTaxes)
-    - [LegalRu.LTDTaxes](#v2-LegalRu-LTDTaxes)
-    - [LegalRu.Type](#v2-LegalRu-Type)
-    - [LegalRu.VAT](#v2-LegalRu-VAT)
-    - [SmartTicketSetting](#v2-SmartTicketSetting)
-    - [TicketSet.Rule.Type](#v2-TicketSet-Rule-Type)
+    - [Event.EventStatus](#v3-Event-EventStatus)
+    - [Event.LegalRu.IPTaxes](#v3-Event-LegalRu-IPTaxes)
+    - [Event.LegalRu.LTDTaxes](#v3-Event-LegalRu-LTDTaxes)
+    - [Event.LegalRu.Type](#v3-Event-LegalRu-Type)
+    - [Event.LegalRu.VAT](#v3-Event-LegalRu-VAT)
+    - [Event.SmartTicketSetting](#v3-Event-SmartTicketSetting)
+    - [Event.TicketSet.Rule.Type](#v3-Event-TicketSet-Rule-Type)
+    - [EventsRequest.Status](#v3-EventsRequest-Status)
   
 - [generic.proto](#generic-proto)
-    - [Coordinates](#v2-Coordinates)
-    - [Lifetime](#v2-Lifetime)
-    - [LiftimeFilter](#v2-LiftimeFilter)
-    - [Media](#v2-Media)
-    - [Percentage](#v2-Percentage)
-    - [TimestampFilter](#v2-TimestampFilter)
+    - [Coordinates](#v3-Coordinates)
+    - [Lifetime](#v3-Lifetime)
+    - [LiftimeFilter](#v3-LiftimeFilter)
+    - [Media](#v3-Media)
+    - [Percentage](#v3-Percentage)
+    - [TimestampFilter](#v3-TimestampFilter)
   
 - [geo.proto](#geo-proto)
-    - [CitiesRequest](#v2-CitiesRequest)
-    - [City](#v2-City)
-    - [CountriesRequest](#v2-CountriesRequest)
-    - [Country](#v2-Country)
-  
-- [healthz.proto](#healthz-proto)
-    - [HealtzRequest](#v2-HealtzRequest)
-    - [HealtzResponse](#v2-HealtzResponse)
+    - [CitiesRequest](#v3-CitiesRequest)
+    - [City](#v3-City)
+    - [CountriesRequest](#v3-CountriesRequest)
+    - [Country](#v3-Country)
   
 - [meta_events.proto](#meta_events-proto)
-    - [MetaEvent](#v2-MetaEvent)
-    - [MetaEventsRequest](#v2-MetaEventsRequest)
+    - [MetaEvent](#v3-MetaEvent)
+    - [MetaEventsRequest](#v3-MetaEventsRequest)
   
 - [mods.proto](#mods-proto)
-    - [Mod](#v2-Mod)
-    - [ModPromotionType](#v2-ModPromotionType)
-    - [ModPromotionType.LevelsCountFix](#v2-ModPromotionType-LevelsCountFix)
-    - [ModPromotionType.LevelsCountFix.Level](#v2-ModPromotionType-LevelsCountFix-Level)
-    - [ModPromotionType.LevelsCountPercentage](#v2-ModPromotionType-LevelsCountPercentage)
-    - [ModPromotionType.LevelsCountPercentage.Level](#v2-ModPromotionType-LevelsCountPercentage-Level)
-    - [ModPromotionType.LevelsFix](#v2-ModPromotionType-LevelsFix)
-    - [ModPromotionType.LevelsFix.Level](#v2-ModPromotionType-LevelsFix-Level)
-    - [ModPromotionType.LevelsPercentage](#v2-ModPromotionType-LevelsPercentage)
-    - [ModPromotionType.LevelsPercentage.Level](#v2-ModPromotionType-LevelsPercentage-Level)
+    - [Mod](#v3-Mod)
+    - [ModPromotionType](#v3-ModPromotionType)
+    - [ModPromotionType.LevelsCountFix](#v3-ModPromotionType-LevelsCountFix)
+    - [ModPromotionType.LevelsCountFix.Level](#v3-ModPromotionType-LevelsCountFix-Level)
+    - [ModPromotionType.LevelsCountPercentage](#v3-ModPromotionType-LevelsCountPercentage)
+    - [ModPromotionType.LevelsCountPercentage.Level](#v3-ModPromotionType-LevelsCountPercentage-Level)
+    - [ModPromotionType.LevelsFix](#v3-ModPromotionType-LevelsFix)
+    - [ModPromotionType.LevelsFix.Level](#v3-ModPromotionType-LevelsFix-Level)
+    - [ModPromotionType.LevelsPercentage](#v3-ModPromotionType-LevelsPercentage)
+    - [ModPromotionType.LevelsPercentage.Level](#v3-ModPromotionType-LevelsPercentage-Level)
   
-    - [ModType](#v2-ModType)
+    - [Mod.ModType](#v3-Mod-ModType)
   
 - [seats.proto](#seats-proto)
-    - [Seat](#v2-Seat)
-    - [SeatsRequest](#v2-SeatsRequest)
+    - [Seat](#v3-Seat)
+    - [SeatsRequest](#v3-SeatsRequest)
   
-    - [SeatsRequest.Status](#v2-SeatsRequest-Status)
-    - [TicketStatus](#v2-TicketStatus)
+    - [Seat.TicketStatus](#v3-Seat-TicketStatus)
+    - [SeatsRequest.Status](#v3-SeatsRequest-Status)
   
 - [service.proto](#service-proto)
-    - [Simple](#v2-Simple)
+    - [Simple](#v3-Simple)
   
 - [tags.proto](#tags-proto)
-    - [CategoriesRequest](#v2-CategoriesRequest)
-    - [Category](#v2-Category)
-    - [Tag](#v2-Tag)
-    - [TagsRequest](#v2-TagsRequest)
+    - [CategoriesRequest](#v3-CategoriesRequest)
+    - [Category](#v3-Category)
+    - [Tag](#v3-Tag)
+    - [TagsRequest](#v3-TagsRequest)
   
 - [venues.proto](#venues-proto)
-    - [Map](#v2-Map)
-    - [Map.Seat](#v2-Map-Seat)
-    - [Map.Seat.Point](#v2-Map-Seat-Point)
-    - [Map.Sector](#v2-Map-Sector)
-    - [Map.SvgEntry](#v2-Map-SvgEntry)
-    - [MapsRequest](#v2-MapsRequest)
-    - [Venue](#v2-Venue)
-    - [VenuesRequest](#v2-VenuesRequest)
+    - [Map](#v3-Map)
+    - [Map.Seat](#v3-Map-Seat)
+    - [Map.Seat.Point](#v3-Map-Seat-Point)
+    - [Map.Sector](#v3-Map-Sector)
+    - [Map.SvgEntry](#v3-Map-SvgEntry)
+    - [MapsRequest](#v3-MapsRequest)
+    - [Venue](#v3-Venue)
+    - [VenuesRequest](#v3-VenuesRequest)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -98,7 +94,7 @@
 
 
 
-<a name="v2-Artist"></a>
+<a name="v3-Artist"></a>
 
 ### Artist
 
@@ -114,7 +110,7 @@
 
 
 
-<a name="v2-ArtistsRequest"></a>
+<a name="v3-ArtistsRequest"></a>
 
 ### ArtistsRequest
 
@@ -145,25 +141,7 @@
 
 
 
-<a name="v2-Deal"></a>
-
-### Deal
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | id сделки |
-| org | [Percentage](#v2-Percentage) |  | % организатора |
-| agent | [Percentage](#v2-Percentage) |  | % распространителя снизу от номинала билета |
-| extra | [Percentage](#v2-Percentage) |  | % распространителя сверху от номинала билета |
-
-
-
-
-
-
-<a name="v2-Event"></a>
+<a name="v3-Event"></a>
 
 ### Event
 
@@ -175,25 +153,25 @@
 | meta | [string](#string) |  | [O] id группы мероприятий (отсутствует, если мероприятие одиночное) |
 | name | [string](#string) |  | название мероприятия |
 | description | [string](#string) |  | [O] описание мероприятия |
-| status | [EventStatus](#v2-EventStatus) |  | статус мероприятия |
+| status | [Event.EventStatus](#v3-Event-EventStatus) |  | статус мероприятия |
 | org | [string](#string) |  | id организатора |
 | venue | [string](#string) |  | id площадки |
 | map | [string](#string) |  | [O] id схемы зала |
-| lifetime | [Lifetime](#v2-Lifetime) |  | дата и время начала и конца мероприятия |
+| lifetime | [Lifetime](#v3-Lifetime) |  | дата и время начала и конца мероприятия |
 | category | [string](#string) |  | id категории мероприятия |
 | tags | [string](#string) | repeated | id жанров мероприятия |
 | artists | [string](#string) | repeated | id артистов мероприятия |
 | age_rating | [string](#string) |  | [O] возрастной рейтинг мероприятия |
-| media | [Media](#v2-Media) |  | обложки |
+| media | [Media](#v3-Media) |  | обложки |
 | open_date | [bool](#bool) |  | признак мероприятия с открытой датой начала |
-| deal | [Deal](#v2-Deal) |  | [O] сделка, если мероприятие запрашивает распространитель |
-| org_extra | [Percentage](#v2-Percentage) |  | [O] % сервисного сбора организатора, если мероприятие запрашивает организатор |
-| legal_ru | [LegalRu](#v2-LegalRu) |  | [O] реквизиты продавца мероприятия |
-| sets | [TicketSet](#v2-TicketSet) | repeated | категории билетов |
+| deal | [Event.Deal](#v3-Event-Deal) |  | [O] сделка, если мероприятие запрашивает распространитель |
+| org_extra | [Percentage](#v3-Percentage) |  | [O] % сервисного сбора организатора, если мероприятие запрашивает организатор |
+| legal_ru | [Event.LegalRu](#v3-Event-LegalRu) |  | [O] реквизиты продавца мероприятия |
+| sets | [Event.TicketSet](#v3-Event-TicketSet) | repeated | категории билетов |
 | tickets_amount | [uint32](#uint32) |  | количество всего билетов в мероприятии |
 | tickets_amount_vacant | [uint32](#uint32) |  | количество свободных к продаже билетов в мероприятии |
-| smart_tickets | [SmartTicketSetting](#v2-SmartTicketSetting) |  | настройки смарт-билетов |
-| mods | [Mod](#v2-Mod) | repeated | дополнительная информация по скидкам на мероприятие |
+| smart_tickets | [Event.SmartTicketSetting](#v3-Event-SmartTicketSetting) |  | настройки смарт-билетов |
+| mods | [Mod](#v3-Mod) | repeated | дополнительная информация по скидкам на мероприятие |
 | additional | [google.protobuf.Any](#google-protobuf-Any) |  | служебное поле |
 
 
@@ -201,54 +179,52 @@
 
 
 
-<a name="v2-EventsRequest"></a>
+<a name="v3-Event-Deal"></a>
 
-### EventsRequest
+### Event.Deal
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| ids | [string](#string) | repeated | фильтр по id мероприятий |
-| meta | [string](#string) |  | фильтр по id конкретных групп мероприятий |
-| without_meta | [bool](#bool) |  | фильтр для получения только одиночных мероприятий, не объединенных ни в какие группы |
-| org | [string](#string) |  | фильтр по id организаторов мероприятий |
-| status | [EventsRequest.Status](#v2-EventsRequest-Status) |  | фильтр по статусу мероприятий |
-| lifetime | [LiftimeFilter](#v2-LiftimeFilter) |  |  |
+| id | [string](#string) |  | id сделки |
+| org | [Percentage](#v3-Percentage) |  | % организатора |
+| agent | [Percentage](#v3-Percentage) |  | % распространителя снизу от номинала билета |
+| extra | [Percentage](#v3-Percentage) |  | % распространителя сверху от номинала билета |
 
 
 
 
 
 
-<a name="v2-LegalRu"></a>
+<a name="v3-Event-LegalRu"></a>
 
-### LegalRu
+### Event.LegalRu
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | id реквизитов |
-| type | [LegalRu.Type](#v2-LegalRu-Type) |  | типа юр. лица |
+| type | [Event.LegalRu.Type](#v3-Event-LegalRu-Type) |  | типа юр. лица |
 | name | [string](#string) |  | название юр. лица |
 | inn | [string](#string) |  | ИНН |
 | address | [string](#string) |  | юридический адрес |
 | ogrn | [string](#string) |  | ОГРН |
 | ogrnip | [string](#string) |  | ОРГНИП |
-| ltd | [LegalRu.LTDTaxes](#v2-LegalRu-LTDTaxes) |  |  |
-| ip | [LegalRu.IPTaxes](#v2-LegalRu-IPTaxes) |  |  |
+| ltd | [Event.LegalRu.LTDTaxes](#v3-Event-LegalRu-LTDTaxes) |  |  |
+| ip | [Event.LegalRu.IPTaxes](#v3-Event-LegalRu-IPTaxes) |  |  |
 | nds | [bool](#bool) | optional |  |
-| vat_rate | [LegalRu.VAT](#v2-LegalRu-VAT) | optional |  |
+| vat_rate | [Event.LegalRu.VAT](#v3-Event-LegalRu-VAT) | optional |  |
 
 
 
 
 
 
-<a name="v2-TicketSet"></a>
+<a name="v3-Event-TicketSet"></a>
 
-### TicketSet
+### Event.TicketSet
 
 
 
@@ -262,34 +238,34 @@
 | with_seats | [bool](#bool) |  | признак категории с рассадкой |
 | amount | [uint32](#uint32) |  | количество всего билетов в категории |
 | amount_vacant | [uint32](#uint32) |  | количество свободных к продаже билетов в категории |
-| rules | [TicketSet.Rule](#v2-TicketSet-Rule) | repeated | правила изменения цен на категорию |
+| rules | [Event.TicketSet.Rule](#v3-Event-TicketSet-Rule) | repeated | правила изменения цен на категорию |
 
 
 
 
 
 
-<a name="v2-TicketSet-Rule"></a>
+<a name="v3-Event-TicketSet-Rule"></a>
 
-### TicketSet.Rule
+### Event.TicketSet.Rule
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | id правила продажи категории |
-| type | [TicketSet.Rule.Type](#v2-TicketSet-Rule-Type) |  | тип правила продажи категории |
-| lifetime | [Lifetime](#v2-Lifetime) |  |  |
-| simple | [TicketSet.Rule.SimpleType](#v2-TicketSet-Rule-SimpleType) |  |  |
+| type | [Event.TicketSet.Rule.Type](#v3-Event-TicketSet-Rule-Type) |  | тип правила продажи категории |
+| lifetime | [Lifetime](#v3-Lifetime) |  |  |
+| simple | [Event.TicketSet.Rule.SimpleType](#v3-Event-TicketSet-Rule-SimpleType) |  |  |
 
 
 
 
 
 
-<a name="v2-TicketSet-Rule-SimpleType"></a>
+<a name="v3-Event-TicketSet-Rule-SimpleType"></a>
 
-### TicketSet.Rule.SimpleType
+### Event.TicketSet.Rule.SimpleType
 
 
 
@@ -301,12 +277,32 @@
 
 
 
+
+<a name="v3-EventsRequest"></a>
+
+### EventsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated | фильтр по id мероприятий |
+| meta | [string](#string) |  | фильтр по id конкретных групп мероприятий |
+| without_meta | [bool](#bool) |  | фильтр для получения только одиночных мероприятий, не объединенных ни в какие группы |
+| org | [string](#string) |  | фильтр по id организаторов мероприятий |
+| status | [EventsRequest.Status](#v3-EventsRequest-Status) |  | фильтр по статусу мероприятий |
+| lifetime | [LiftimeFilter](#v3-LiftimeFilter) |  |  |
+
+
+
+
+
  
 
 
-<a name="v2-EventStatus"></a>
+<a name="v3-Event-EventStatus"></a>
 
-### EventStatus
+### Event.EventStatus
 
 
 | Name | Number | Description |
@@ -316,22 +312,9 @@
 
 
 
-<a name="v2-EventsRequest-Status"></a>
+<a name="v3-Event-LegalRu-IPTaxes"></a>
 
-### EventsRequest.Status
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| ANY | 0 | без фильтрации по состоянию |
-| STAND_BY | 1 | продажи остановлены |
-| PUBLIC | 2 | продажи активны |
-
-
-
-<a name="v2-LegalRu-IPTaxes"></a>
-
-### LegalRu.IPTaxes
+### Event.LegalRu.IPTaxes
 
 
 | Name | Number | Description |
@@ -343,9 +326,9 @@
 
 
 
-<a name="v2-LegalRu-LTDTaxes"></a>
+<a name="v3-Event-LegalRu-LTDTaxes"></a>
 
-### LegalRu.LTDTaxes
+### Event.LegalRu.LTDTaxes
 
 
 | Name | Number | Description |
@@ -355,9 +338,9 @@
 
 
 
-<a name="v2-LegalRu-Type"></a>
+<a name="v3-Event-LegalRu-Type"></a>
 
-### LegalRu.Type
+### Event.LegalRu.Type
 
 
 | Name | Number | Description |
@@ -368,24 +351,24 @@
 
 
 
-<a name="v2-LegalRu-VAT"></a>
+<a name="v3-Event-LegalRu-VAT"></a>
 
-### LegalRu.VAT
-
-
-| Name   | Number | Description |
-|--------|--------| ----------- |
-| VAT_0  | 0      |  |
-| VAT_5  | 1      |  |
-| VAT_7  | 2      |  |
-| VAT_20 | 3      |  |
-| VAT_22 | 4      |  |
+### Event.LegalRu.VAT
 
 
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| VAT_0 | 0 |  |
+| VAT_5 | 1 |  |
+| VAT_7 | 2 |  |
+| VAT_20 | 3 |  |
+| VAT_22 | 4 |  |
 
-<a name="v2-SmartTicketSetting"></a>
 
-### SmartTicketSetting
+
+<a name="v3-Event-SmartTicketSetting"></a>
+
+### Event.SmartTicketSetting
 
 
 | Name | Number | Description |
@@ -396,14 +379,27 @@
 
 
 
-<a name="v2-TicketSet-Rule-Type"></a>
+<a name="v3-Event-TicketSet-Rule-Type"></a>
 
-### TicketSet.Rule.Type
+### Event.TicketSet.Rule.Type
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | SIMPLE | 0 | простой тип правила, правила продажи сменяют друг друга с течением времени |
+
+
+
+<a name="v3-EventsRequest-Status"></a>
+
+### EventsRequest.Status
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ANY | 0 | без фильтрации по состоянию |
+| STAND_BY | 1 | продажи остановлены |
+| PUBLIC | 2 | продажи активны |
 
 
  
@@ -421,7 +417,7 @@
 
 
 
-<a name="v2-Coordinates"></a>
+<a name="v3-Coordinates"></a>
 
 ### Coordinates
 
@@ -437,7 +433,7 @@
 
 
 
-<a name="v2-Lifetime"></a>
+<a name="v3-Lifetime"></a>
 
 ### Lifetime
 
@@ -453,7 +449,7 @@
 
 
 
-<a name="v2-LiftimeFilter"></a>
+<a name="v3-LiftimeFilter"></a>
 
 ### LiftimeFilter
 
@@ -461,15 +457,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| start | [TimestampFilter](#v2-TimestampFilter) |  |  |
-| finish | [TimestampFilter](#v2-TimestampFilter) |  |  |
+| start | [TimestampFilter](#v3-TimestampFilter) |  |  |
+| finish | [TimestampFilter](#v3-TimestampFilter) |  |  |
 
 
 
 
 
 
-<a name="v2-Media"></a>
+<a name="v3-Media"></a>
 
 ### Media
 
@@ -486,7 +482,7 @@
 
 
 
-<a name="v2-Percentage"></a>
+<a name="v3-Percentage"></a>
 
 ### Percentage
 
@@ -502,7 +498,7 @@
 
 
 
-<a name="v2-TimestampFilter"></a>
+<a name="v3-TimestampFilter"></a>
 
 ### TimestampFilter
 
@@ -536,7 +532,7 @@
 
 
 
-<a name="v2-CitiesRequest"></a>
+<a name="v3-CitiesRequest"></a>
 
 ### CitiesRequest
 
@@ -554,7 +550,7 @@
 
 
 
-<a name="v2-City"></a>
+<a name="v3-City"></a>
 
 ### City
 
@@ -566,7 +562,7 @@
 | name | [string](#string) |  | название города |
 | country | [string](#string) |  | id страны |
 | timezone | [string](#string) |  | таймзона города |
-| coordinates | [Coordinates](#v2-Coordinates) |  | координаты города |
+| coordinates | [Coordinates](#v3-Coordinates) |  | координаты города |
 | population | [int64](#int64) |  | численность населения города |
 
 
@@ -574,7 +570,7 @@
 
 
 
-<a name="v2-CountriesRequest"></a>
+<a name="v3-CountriesRequest"></a>
 
 ### CountriesRequest
 
@@ -589,7 +585,7 @@
 
 
 
-<a name="v2-Country"></a>
+<a name="v3-Country"></a>
 
 ### Country
 
@@ -618,47 +614,6 @@
 
 
 
-<a name="healthz-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## healthz.proto
-
-
-
-<a name="v2-HealtzRequest"></a>
-
-### HealtzRequest
-
-
-
-
-
-
-
-<a name="v2-HealtzResponse"></a>
-
-### HealtzResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| status | [string](#string) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
 <a name="meta_events-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -666,7 +621,7 @@
 
 
 
-<a name="v2-MetaEvent"></a>
+<a name="v3-MetaEvent"></a>
 
 ### MetaEvent
 
@@ -679,7 +634,7 @@
 | description | [string](#string) |  | [O] описание группы мероприятий |
 | org | [string](#string) |  | id организатора |
 | age_rating | [string](#string) |  | [O] возвратной рейтинг мероприятия |
-| media | [Media](#v2-Media) |  | обложка группы мероприятий |
+| media | [Media](#v3-Media) |  | обложка группы мероприятий |
 | first_start | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | начало первого мероприятия в группе |
 | last_finish | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | конец последнего мероприятия в группе |
 | additional | [google.protobuf.Any](#google-protobuf-Any) |  | служебное поле |
@@ -689,7 +644,7 @@
 
 
 
-<a name="v2-MetaEventsRequest"></a>
+<a name="v3-MetaEventsRequest"></a>
 
 ### MetaEventsRequest
 
@@ -720,7 +675,7 @@
 
 
 
-<a name="v2-Mod"></a>
+<a name="v3-Mod"></a>
 
 ### Mod
 
@@ -729,15 +684,15 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  |  |
-| type | [ModType](#v2-ModType) |  | тип модификатора |
-| promotion | [ModPromotionType](#v2-ModPromotionType) |  | промоакции |
+| type | [Mod.ModType](#v3-Mod-ModType) |  | тип модификатора |
+| promotion | [ModPromotionType](#v3-ModPromotionType) |  | промоакции |
 
 
 
 
 
 
-<a name="v2-ModPromotionType"></a>
+<a name="v3-ModPromotionType"></a>
 
 ### ModPromotionType
 
@@ -745,21 +700,21 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| lifetime | [Lifetime](#v2-Lifetime) |  | время действия промоакции |
+| lifetime | [Lifetime](#v3-Lifetime) |  | время действия промоакции |
 | sets | [string](#string) | repeated | список категорий билетов, к которым применяется промоакция |
-| discount_percentage | [Percentage](#v2-Percentage) |  | процент скидки |
+| discount_percentage | [Percentage](#v3-Percentage) |  | процент скидки |
 | discount_fix | [uint64](#uint64) |  | фиксированная скидка |
-| levels_percentage | [ModPromotionType.LevelsPercentage](#v2-ModPromotionType-LevelsPercentage) |  | &#34;лесенка&#34; процентов |
-| levels_fix | [ModPromotionType.LevelsFix](#v2-ModPromotionType-LevelsFix) |  | &#34;лесенка&#34; фиксированных значений |
-| levels_count_percentage | [ModPromotionType.LevelsCountPercentage](#v2-ModPromotionType-LevelsCountPercentage) |  | &#34;лесенка&#34; процентов по билетам |
-| levels_count_fix | [ModPromotionType.LevelsCountFix](#v2-ModPromotionType-LevelsCountFix) |  | &#34;лесенка&#34; фиксированных значений по билетам |
+| levels_percentage | [ModPromotionType.LevelsPercentage](#v3-ModPromotionType-LevelsPercentage) |  | &#34;лесенка&#34; процентов |
+| levels_fix | [ModPromotionType.LevelsFix](#v3-ModPromotionType-LevelsFix) |  | &#34;лесенка&#34; фиксированных значений |
+| levels_count_percentage | [ModPromotionType.LevelsCountPercentage](#v3-ModPromotionType-LevelsCountPercentage) |  | &#34;лесенка&#34; процентов по билетам |
+| levels_count_fix | [ModPromotionType.LevelsCountFix](#v3-ModPromotionType-LevelsCountFix) |  | &#34;лесенка&#34; фиксированных значений по билетам |
 
 
 
 
 
 
-<a name="v2-ModPromotionType-LevelsCountFix"></a>
+<a name="v3-ModPromotionType-LevelsCountFix"></a>
 
 ### ModPromotionType.LevelsCountFix
 
@@ -767,14 +722,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| levels | [ModPromotionType.LevelsCountFix.Level](#v2-ModPromotionType-LevelsCountFix-Level) | repeated |  |
+| levels | [ModPromotionType.LevelsCountFix.Level](#v3-ModPromotionType-LevelsCountFix-Level) | repeated |  |
 
 
 
 
 
 
-<a name="v2-ModPromotionType-LevelsCountFix-Level"></a>
+<a name="v3-ModPromotionType-LevelsCountFix-Level"></a>
 
 ### ModPromotionType.LevelsCountFix.Level
 
@@ -790,7 +745,7 @@
 
 
 
-<a name="v2-ModPromotionType-LevelsCountPercentage"></a>
+<a name="v3-ModPromotionType-LevelsCountPercentage"></a>
 
 ### ModPromotionType.LevelsCountPercentage
 
@@ -798,14 +753,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| levels | [ModPromotionType.LevelsCountPercentage.Level](#v2-ModPromotionType-LevelsCountPercentage-Level) | repeated |  |
+| levels | [ModPromotionType.LevelsCountPercentage.Level](#v3-ModPromotionType-LevelsCountPercentage-Level) | repeated |  |
 
 
 
 
 
 
-<a name="v2-ModPromotionType-LevelsCountPercentage-Level"></a>
+<a name="v3-ModPromotionType-LevelsCountPercentage-Level"></a>
 
 ### ModPromotionType.LevelsCountPercentage.Level
 
@@ -814,14 +769,14 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | level | [uint64](#uint64) |  | количество билетов в заказе с которого применяется скидка |
-| value | [Percentage](#v2-Percentage) |  | процент скидки |
+| value | [Percentage](#v3-Percentage) |  | процент скидки |
 
 
 
 
 
 
-<a name="v2-ModPromotionType-LevelsFix"></a>
+<a name="v3-ModPromotionType-LevelsFix"></a>
 
 ### ModPromotionType.LevelsFix
 
@@ -829,14 +784,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| levels | [ModPromotionType.LevelsFix.Level](#v2-ModPromotionType-LevelsFix-Level) | repeated |  |
+| levels | [ModPromotionType.LevelsFix.Level](#v3-ModPromotionType-LevelsFix-Level) | repeated |  |
 
 
 
 
 
 
-<a name="v2-ModPromotionType-LevelsFix-Level"></a>
+<a name="v3-ModPromotionType-LevelsFix-Level"></a>
 
 ### ModPromotionType.LevelsFix.Level
 
@@ -852,7 +807,7 @@
 
 
 
-<a name="v2-ModPromotionType-LevelsPercentage"></a>
+<a name="v3-ModPromotionType-LevelsPercentage"></a>
 
 ### ModPromotionType.LevelsPercentage
 
@@ -860,14 +815,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| levels | [ModPromotionType.LevelsPercentage.Level](#v2-ModPromotionType-LevelsPercentage-Level) | repeated |  |
+| levels | [ModPromotionType.LevelsPercentage.Level](#v3-ModPromotionType-LevelsPercentage-Level) | repeated |  |
 
 
 
 
 
 
-<a name="v2-ModPromotionType-LevelsPercentage-Level"></a>
+<a name="v3-ModPromotionType-LevelsPercentage-Level"></a>
 
 ### ModPromotionType.LevelsPercentage.Level
 
@@ -876,7 +831,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | level | [uint64](#uint64) |  | количество денег в заказе с которого применяется скидка |
-| value | [Percentage](#v2-Percentage) |  | процент скидки |
+| value | [Percentage](#v3-Percentage) |  | процент скидки |
 
 
 
@@ -885,14 +840,15 @@
  
 
 
-<a name="v2-ModType"></a>
+<a name="v3-Mod-ModType"></a>
 
-### ModType
+### Mod.ModType
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| PROMOTION | 0 | модификатор-промоакция |
+| UNKNOWN | 0 |  |
+| PROMOTION | 1 | модификатор-промоакция |
 
 
  
@@ -910,7 +866,7 @@
 
 
 
-<a name="v2-Seat"></a>
+<a name="v3-Seat"></a>
 
 ### Seat
 
@@ -924,7 +880,7 @@
 | event | [string](#string) |  | id мероприятия |
 | set | [string](#string) |  | id категории билета |
 | ticket | [string](#string) |  | id билета |
-| status | [TicketStatus](#v2-TicketStatus) |  | статус билета |
+| status | [Seat.TicketStatus](#v3-Seat-TicketStatus) |  | статус билета |
 | ticket_reserved_till | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | [O] время до которого билет забронирован, заполнено только у билетов в статусе &#39;RESERVED&#39; |
 
 
@@ -932,7 +888,7 @@
 
 
 
-<a name="v2-SeatsRequest"></a>
+<a name="v3-SeatsRequest"></a>
 
 ### SeatsRequest
 
@@ -946,7 +902,7 @@
 | event | [string](#string) |  | фильтр по id мероприятия, обязательный параметр |
 | sets | [string](#string) | repeated |  |
 | tickets | [string](#string) | repeated |  |
-| status | [SeatsRequest.Status](#v2-SeatsRequest-Status) |  |  |
+| status | [SeatsRequest.Status](#v3-SeatsRequest-Status) |  |  |
 
 
 
@@ -955,7 +911,20 @@
  
 
 
-<a name="v2-SeatsRequest-Status"></a>
+<a name="v3-Seat-TicketStatus"></a>
+
+### Seat.TicketStatus
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| VACANT | 0 | билет доступен к продаже |
+| RESERVED | 1 | билет забронирован |
+| SOLD | 2 | билет продан |
+
+
+
+<a name="v3-SeatsRequest-Status"></a>
 
 ### SeatsRequest.Status
 
@@ -966,19 +935,6 @@
 | VACANT | 1 | билет доступен к продаже |
 | RESERVED | 2 | билет забронирован |
 | SOLD | 3 | билет продан |
-
-
-
-<a name="v2-TicketStatus"></a>
-
-### TicketStatus
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| VACANT | 0 | билет доступен к продаже |
-| RESERVED | 1 | билет забронирован |
-| SOLD | 2 | билет продан |
 
 
  
@@ -1002,24 +958,23 @@
  
 
 
-<a name="v2-Simple"></a>
+<a name="v3-Simple"></a>
 
 ### Simple
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Healtz | [HealtzRequest](#v2-HealtzRequest) | [HealtzResponse](#v2-HealtzResponse) |  |
-| Artists | [ArtistsRequest](#v2-ArtistsRequest) | [Artist](#v2-Artist) stream |  |
-| Categories | [CategoriesRequest](#v2-CategoriesRequest) | [Category](#v2-Category) stream |  |
-| Cities | [CitiesRequest](#v2-CitiesRequest) | [City](#v2-City) stream |  |
-| Countries | [CountriesRequest](#v2-CountriesRequest) | [Country](#v2-Country) stream |  |
-| Events | [EventsRequest](#v2-EventsRequest) | [Event](#v2-Event) stream |  |
-| Maps | [MapsRequest](#v2-MapsRequest) | [Map](#v2-Map) stream |  |
-| MetaEvents | [MetaEventsRequest](#v2-MetaEventsRequest) | [MetaEvent](#v2-MetaEvent) stream |  |
-| Seats | [SeatsRequest](#v2-SeatsRequest) | [Seat](#v2-Seat) stream |  |
-| Tags | [TagsRequest](#v2-TagsRequest) | [Tag](#v2-Tag) stream |  |
-| Venues | [VenuesRequest](#v2-VenuesRequest) | [Venue](#v2-Venue) stream |  |
+| Artists | [ArtistsRequest](#v3-ArtistsRequest) | [Artist](#v3-Artist) stream |  |
+| Categories | [CategoriesRequest](#v3-CategoriesRequest) | [Category](#v3-Category) stream |  |
+| Cities | [CitiesRequest](#v3-CitiesRequest) | [City](#v3-City) stream |  |
+| Countries | [CountriesRequest](#v3-CountriesRequest) | [Country](#v3-Country) stream |  |
+| Events | [EventsRequest](#v3-EventsRequest) | [Event](#v3-Event) stream |  |
+| Maps | [MapsRequest](#v3-MapsRequest) | [Map](#v3-Map) stream |  |
+| MetaEvents | [MetaEventsRequest](#v3-MetaEventsRequest) | [MetaEvent](#v3-MetaEvent) stream |  |
+| Seats | [SeatsRequest](#v3-SeatsRequest) | [Seat](#v3-Seat) stream |  |
+| Tags | [TagsRequest](#v3-TagsRequest) | [Tag](#v3-Tag) stream |  |
+| Venues | [VenuesRequest](#v3-VenuesRequest) | [Venue](#v3-Venue) stream |  |
 
  
 
@@ -1032,7 +987,7 @@
 
 
 
-<a name="v2-CategoriesRequest"></a>
+<a name="v3-CategoriesRequest"></a>
 
 ### CategoriesRequest
 
@@ -1047,7 +1002,7 @@
 
 
 
-<a name="v2-Category"></a>
+<a name="v3-Category"></a>
 
 ### Category
 
@@ -1063,7 +1018,7 @@
 
 
 
-<a name="v2-Tag"></a>
+<a name="v3-Tag"></a>
 
 ### Tag
 
@@ -1081,7 +1036,7 @@
 
 
 
-<a name="v2-TagsRequest"></a>
+<a name="v3-TagsRequest"></a>
 
 ### TagsRequest
 
@@ -1112,7 +1067,7 @@
 
 
 
-<a name="v2-Map"></a>
+<a name="v3-Map"></a>
 
 ### Map
 
@@ -1124,16 +1079,16 @@
 | name | [string](#string) |  | название схемы зала |
 | description | [string](#string) |  | [O] описание схемы зала |
 | venue | [string](#string) |  | id площадки |
-| sectors | [Map.Sector](#v2-Map-Sector) | repeated | перечисление секторов |
-| seats | [Map.Seat](#v2-Map-Seat) | repeated | перечисление мест |
-| svg | [Map.SvgEntry](#v2-Map-SvgEntry) | repeated | svg со схемами |
+| sectors | [Map.Sector](#v3-Map-Sector) | repeated | перечисление секторов |
+| seats | [Map.Seat](#v3-Map-Seat) | repeated | перечисление мест |
+| svg | [Map.SvgEntry](#v3-Map-SvgEntry) | repeated | svg со схемами |
 
 
 
 
 
 
-<a name="v2-Map-Seat"></a>
+<a name="v3-Map-Seat"></a>
 
 ### Map.Seat
 
@@ -1144,14 +1099,14 @@
 | sector | [string](#string) |  |  |
 | row | [string](#string) |  | номер ряда |
 | number | [string](#string) |  | номер места |
-| point | [Map.Seat.Point](#v2-Map-Seat-Point) |  |  |
+| point | [Map.Seat.Point](#v3-Map-Seat-Point) |  |  |
 
 
 
 
 
 
-<a name="v2-Map-Seat-Point"></a>
+<a name="v3-Map-Seat-Point"></a>
 
 ### Map.Seat.Point
 координаты места на схеме зала
@@ -1168,7 +1123,7 @@
 
 
 
-<a name="v2-Map-Sector"></a>
+<a name="v3-Map-Sector"></a>
 
 ### Map.Sector
 
@@ -1186,7 +1141,7 @@
 
 
 
-<a name="v2-Map-SvgEntry"></a>
+<a name="v3-Map-SvgEntry"></a>
 
 ### Map.SvgEntry
 
@@ -1202,7 +1157,7 @@
 
 
 
-<a name="v2-MapsRequest"></a>
+<a name="v3-MapsRequest"></a>
 
 ### MapsRequest
 
@@ -1218,7 +1173,7 @@
 
 
 
-<a name="v2-Venue"></a>
+<a name="v3-Venue"></a>
 
 ### Venue
 
@@ -1231,7 +1186,7 @@
 | description | [string](#string) |  | [O] описание площадки |
 | city | [int32](#int32) |  | id города |
 | address | [string](#string) |  | [O] адрес площадки |
-| coordinates | [Coordinates](#v2-Coordinates) |  | [O] координаты площадки |
+| coordinates | [Coordinates](#v3-Coordinates) |  | [O] координаты площадки |
 | with_mosbilet | [bool](#bool) |  | признак наличия интеграции с mosbilet.ru |
 
 
@@ -1239,7 +1194,7 @@
 
 
 
-<a name="v2-VenuesRequest"></a>
+<a name="v3-VenuesRequest"></a>
 
 ### VenuesRequest
 

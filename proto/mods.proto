@@ -1,12 +1,8 @@
 syntax = "proto3";
 
-package v2;
+package v3;
 
 import "generic.proto";
-
-enum ModType {
-  PROMOTION = 0;  // модификатор-промоакция
-}
 
 message ModPromotionType {
   message LevelsPercentage {
@@ -55,6 +51,11 @@ message ModPromotionType {
 
 
 message Mod {
+  enum ModType {
+    UNKNOWN = 0;
+    PROMOTION = 1;  // модификатор-промоакция
+  }
+
   string id = 1;
   ModType type = 2;  // тип модификатора
   oneof settings {

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package v2;
+package v3;
 
 message ArtistsRequest {
   repeated string ids = 1;  // фильтр по id артиста

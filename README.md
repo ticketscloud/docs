@@ -41,14 +41,14 @@ require "vendor/autoload.php";
 // Если используем composer, можно добавить в composer.json
 // "autoload": {
 //   "psr-4": {
-//     "V2\\": "php_generated/V2/",
+//     "V3\\": "php_generated/V3/",
 //     "GPBMetadata\\": "php_generated/GPBMetadata/"
 //   }
 // }
 
 use Grpc\ChannelCredentials;
-use V2\SimpleClient;
-use V2\CountriesRequest;
+use V3\SimpleClient;
+use V3\CountriesRequest;
 
 $host = "simple.stage.freetc.net:443";
 $key = "<key>";  // Вписать API ключ
