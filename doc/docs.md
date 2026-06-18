@@ -72,7 +72,11 @@
     - [Category](#v3-Category)
     - [Tag](#v3-Tag)
     - [TagsRequest](#v3-TagsRequest)
-  
+
+- [tariffs.proto](#tariffs-proto)
+    - [Tariff](#v3-Tariff)
+    - [TariffsRequest](#v3-TariffsRequest)
+
 - [venues.proto](#venues-proto)
     - [Map](#v3-Map)
     - [Map.Seat](#v3-Map-Seat)
@@ -936,27 +940,10 @@
 | RESERVED | 2 | билет забронирован |
 | SOLD | 3 | билет продан |
 
-
- 
-
- 
-
- 
-
-
-
 <a name="service-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
 ## service.proto
-
-
- 
-
- 
-
- 
-
 
 <a name="v3-Simple"></a>
 
@@ -974,11 +961,8 @@
 | MetaEvents | [MetaEventsRequest](#v3-MetaEventsRequest) | [MetaEvent](#v3-MetaEvent) stream |  |
 | Seats | [SeatsRequest](#v3-SeatsRequest) | [Seat](#v3-Seat) stream |  |
 | Tags | [TagsRequest](#v3-TagsRequest) | [Tag](#v3-Tag) stream |  |
+| Tariffs | [TariffsRequest](#v3-TariffsRequest) | [Tariff](#v3-Tariff) stream |  |
 | Venues | [VenuesRequest](#v3-VenuesRequest) | [Venue](#v3-Venue) stream |  |
-
- 
-
-
 
 <a name="tags-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
@@ -1046,19 +1030,41 @@
 | ----- | ---- | ----- | ----------- |
 | ids | [string](#string) | repeated | фильтр по id жанра |
 
+<a name="tariffs-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
 
+## tariffs.proto
 
+<a name="v3-Tariff"></a>
 
+### Tariff
 
- 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | id тарифа |
+| name | [string](#string) |  | название |
+| description | [string](#string) |  | описание |
+| event | [string](#string) |  | мероприятие |
+| meta_event | [string](#string) |  | метамероприятие |
+| sets | [string](#string) | repeated | категории билетов, к которым применяется тариф |
+| discount_percentage | [Percentage](#v3-Percentage) |  | % наценки / скидки  |
+| price | [uint64](#uint64) |  | величина наценки / скидки в рублях |
+| lifetime | [Lifetime](#v3-Lifetime) |  | период действия тарифа |
 
- 
+<a name="v3-TariffsRequest"></a>
 
- 
+### TariffsRequest
 
- 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| events | [string](#string) | repeated | фильтр по id мероприятия |
+| meta_events | [string](#string) | repeated | фильтр по id метамероприятия |
+| sets | [string](#string) | repeated | фильтр по id категории билетов |
+| ticket_reserved_till | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | время, на которое тариф должен действовать |
 
-
+Если указаны одновременно фильтры events и meta_events, в ответе будут тарифы и для метамероприятий и для одиночных мероприятий с указанными id. Если дополнительно указан фильтр sets, то *из этих* мероприятий и метамероприятий будут выбраны только указанные категории билетов и в ответе будут только тарифы для этих категорий билетов.
+Если указан фильтр ticket_reserved_till, то тариф должен действовать на момент времени, указанного в этом фильтре.
+Если не указано ни одного фильтра, будут возвращены все тарифы.
 
 <a name="venues-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
@@ -1237,4 +1243,3 @@
 | <a name="bool" /> bool |  | bool | boolean | boolean | bool | bool | boolean | TrueClass/FalseClass |
 | <a name="string" /> string | A string must always contain UTF-8 encoded or 7-bit ASCII text. | string | String | str/unicode | string | string | string | String (UTF-8) |
 | <a name="bytes" /> bytes | May contain any arbitrary sequence of bytes. | string | ByteString | str | []byte | ByteString | string | String (ASCII-8BIT) |
-

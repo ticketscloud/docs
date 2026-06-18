@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package v3;
+
+import "generic.proto";
+import "google/protobuf/timestamp.proto";
+
+
+message TariffsRequest {
+  repeated string events = 1;  // фильтр по id мероприятия
+  repeated string meta_events = 2;  // фильтр по id метамероприятия
+  repeated string sets = 3;  // фильтр по id категории билетов
+  google.protobuf.Timestamp ticket_reserved_till = 10;  // время, на которое тариф должен действовать
+}
+
+
+message Tariff {
+  string id = 1;  // id тарифа
+  string name = 2;  // название
+  string description = 3;  // описание
+
+  string event = 4;  // мероприятие, к которому привязан тариф
+  string meta_event = 5;  // метамероприятие, к которому привязан тариф
+  repeated string sets = 6;  // id категорий билетов, для которых доступен тариф
+
+  oneof discount {
+    Percentage discount_percentage = 8;  // % скидки
+    int64 discount_fix = 9;  // величина скидки в рублях
+  }
+  Lifetime lifetime = 10;  // период действия тарифа
+}
