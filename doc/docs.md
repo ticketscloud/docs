@@ -243,6 +243,7 @@
 | amount | [uint32](#uint32) |  | количество всего билетов в категории |
 | amount_vacant | [uint32](#uint32) |  | количество свободных к продаже билетов в категории |
 | rules | [Event.TicketSet.Rule](#v3-Event-TicketSet-Rule) | repeated | правила изменения цен на категорию |
+| tariffs | [string](#string) | repeated | id тарифов, применимых к категории |
 
 
 
@@ -1030,25 +1031,42 @@
 | ----- | ---- | ----- | ----------- |
 | ids | [string](#string) | repeated | фильтр по id жанра |
 
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
 <a name="tariffs-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
 ## tariffs.proto
 
+
+
 <a name="v3-Tariff"></a>
 
 ### Tariff
+
+
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | id тарифа |
 | name | [string](#string) |  | название |
 | description | [string](#string) |  | описание |
-| event | [string](#string) |  | мероприятие |
-| meta_event | [string](#string) |  | метамероприятие |
-| sets | [string](#string) | repeated | категории билетов, к которым применяется тариф |
-| discount_percentage | [Percentage](#v3-Percentage) |  | % наценки / скидки  |
-| price | [uint64](#uint64) |  | величина наценки / скидки в рублях |
+| event | [string](#string) |  | мероприятие, к которому привязан тариф |
+| meta_event | [string](#string) |  | метамероприятие, к которому привязан тариф |
+| discount_percentage | [Percentage](#v3-Percentage) |  | % наценки / скидки |
+| discount_fix | [int64](#int64) |  | величина наценки / скидки в рублях |
 | lifetime | [Lifetime](#v3-Lifetime) |  | период действия тарифа |
 
 <a name="v3-TariffsRequest"></a>
@@ -1057,14 +1075,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| events | [string](#string) | repeated | фильтр по id мероприятия |
-| meta_events | [string](#string) | repeated | фильтр по id метамероприятия |
-| sets | [string](#string) | repeated | фильтр по id категории билетов |
-| ticket_reserved_till | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | время, на которое тариф должен действовать |
+| ids | [string](#string) | repeated | фильтр по id тарифов |
 
-Если указаны одновременно фильтры events и meta_events, в ответе будут тарифы и для метамероприятий и для одиночных мероприятий с указанными id. Если дополнительно указан фильтр sets, то *из этих* мероприятий и метамероприятий будут выбраны только указанные категории билетов и в ответе будут только тарифы для этих категорий билетов.
-Если указан фильтр ticket_reserved_till, то тариф должен действовать на момент времени, указанного в этом фильтре.
-Если не указано ни одного фильтра, будут возвращены все тарифы.
 
 <a name="venues-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
