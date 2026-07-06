@@ -26,9 +26,9 @@ message MapsRequest {
 message Map {
   message Sector {
     enum Type {
-      CHAIRS = 0;  // сектор с креслами
-      TABLES = 1;  // сектор с столами
-      UNKNOWN = 2;  // неизвестный тип сектора
+      UNKNOWN = 0;  // неизвестный тип сектора
+      CHAIRS = 1;  // сектор с креслами
+      TABLES = 2;  // сектор с столами
     }
 
     string id = 1;  // id сектора
