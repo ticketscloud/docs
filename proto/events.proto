@@ -105,6 +105,7 @@ message Event {
     uint32 amount_vacant = 8;  // количество свободных к продаже билетов в категории
 
     repeated Rule rules = 10;  // правила изменения цен на категорию
+    repeated string tariffs = 11;  // id тарифов, применимых к категории
   }
 
   enum SmartTicketSetting {

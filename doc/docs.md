@@ -72,7 +72,11 @@
     - [Category](#v3-Category)
     - [Tag](#v3-Tag)
     - [TagsRequest](#v3-TagsRequest)
-  
+
+- [tariffs.proto](#tariffs-proto)
+    - [Tariff](#v3-Tariff)
+    - [TariffsRequest](#v3-TariffsRequest)
+
 - [venues.proto](#venues-proto)
     - [Map](#v3-Map)
     - [Map.Seat](#v3-Map-Seat)
@@ -240,6 +244,7 @@
 | amount | [uint32](#uint32) |  | количество всего билетов в категории |
 | amount_vacant | [uint32](#uint32) |  | количество свободных к продаже билетов в категории |
 | rules | [Event.TicketSet.Rule](#v3-Event-TicketSet-Rule) | repeated | правила изменения цен на категорию |
+| tariffs | [string](#string) | repeated | id тарифов, применимых к категории |
 
 
 
@@ -937,27 +942,10 @@
 | RESERVED | 2 | билет забронирован |
 | SOLD | 3 | билет продан |
 
-
- 
-
- 
-
- 
-
-
-
 <a name="service-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
 ## service.proto
-
-
- 
-
- 
-
- 
-
 
 <a name="v3-Simple"></a>
 
@@ -975,11 +963,8 @@
 | MetaEvents | [MetaEventsRequest](#v3-MetaEventsRequest) | [MetaEvent](#v3-MetaEvent) stream |  |
 | Seats | [SeatsRequest](#v3-SeatsRequest) | [Seat](#v3-Seat) stream |  |
 | Tags | [TagsRequest](#v3-TagsRequest) | [Tag](#v3-Tag) stream |  |
+| Tariffs | [TariffsRequest](#v3-TariffsRequest) | [Tariff](#v3-Tariff) stream |  |
 | Venues | [VenuesRequest](#v3-VenuesRequest) | [Venue](#v3-Venue) stream |  |
-
- 
-
-
 
 <a name="tags-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
@@ -1059,6 +1044,39 @@
 
  
 
+
+
+<a name="tariffs-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## tariffs.proto
+
+
+
+<a name="v3-Tariff"></a>
+
+### Tariff
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | id тарифа |
+| name | [string](#string) |  | название |
+| description | [string](#string) |  | описание |
+| event | [string](#string) |  | мероприятие, к которому привязан тариф |
+| meta_event | [string](#string) |  | метамероприятие, к которому привязан тариф |
+| discount_percentage | [Percentage](#v3-Percentage) |  | % наценки / скидки |
+| discount_fix | [int64](#int64) |  | величина наценки / скидки в рублях |
+| lifetime | [Lifetime](#v3-Lifetime) |  | период действия тарифа |
+
+<a name="v3-TariffsRequest"></a>
+
+### TariffsRequest
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated | фильтр по id тарифов |
 
 
 <a name="venues-proto"></a>

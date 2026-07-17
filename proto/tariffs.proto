@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package v3;
+
+import "generic.proto";
+
+
+message TariffsRequest {
+  repeated string ids = 1;  // фильтр по id тарифов
+}
+
+
+message Tariff {
+  string id = 1;  // id тарифа
+  string name = 2;  // название
+  string description = 3;  // описание
+
+  string event = 4;  // мероприятие, к которому привязан тариф
+  string meta_event = 5;  // метамероприятие, к которому привязан тариф
+
+  oneof discount {
+    Percentage discount_percentage = 8;  // % скидки
+    int64 discount_fix = 9;  // величина скидки в рублях
+  }
+  Lifetime lifetime = 10;  // период действия тарифа
+}

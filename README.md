@@ -5,6 +5,7 @@
 
 [Сервисы:](doc/docs.md#simple)
 - список мероприятий ([Events](doc/docs.md#Event));
+- список тарифов ([Tariffs](doc/docs.md#Tariff));
 - список групп периодических и повторяющихся мероприятий ([MetaEvents](doc/docs.md#MetaEvent));
 - классификация мероприятий: теги ([Tags](doc/docs.md#Tag)) и категории ([Categories](doc/docs.md#CategoriesRequest));
 - площадки проведения мероприятий ([Venues](doc/docs.md#Venue), схемы расположения ([Maps](doc/docs.md#Map)) зрительских мест ([Seats](doc/docs.md#Seat));
