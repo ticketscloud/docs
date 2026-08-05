@@ -3,6 +3,7 @@ syntax = "proto3";
 package v3;
 
 import "artists.proto";
+import "deals.proto";
 import "events.proto";
 import "geo.proto";
 import "meta_events.proto";
@@ -15,6 +16,7 @@ service Simple {
   rpc Categories(CategoriesRequest) returns (stream Category);
   rpc Cities(CitiesRequest) returns (stream City);
   rpc Countries(CountriesRequest) returns (stream Country);
+  rpc Deals(DealsRequest) returns (stream Deal);
   rpc Events(EventsRequest) returns (stream Event);
   rpc Maps(MapsRequest) returns (stream Map);
   rpc MetaEvents(MetaEventsRequest) returns (stream MetaEvent);

@@ -7,6 +7,12 @@
     - [Artist](#v3-Artist)
     - [ArtistsRequest](#v3-ArtistsRequest)
   
+- [deals.proto](#deals-proto)
+    - [Deal](#v3-Deal)
+    - [Deal.Term](#v3-Deal-Term)
+    - [DealsRequest](#v3-DealsRequest)
+    - [Deal.Status](#v3-Deal-Status)
+
 - [events.proto](#events-proto)
     - [Event](#v3-Event)
     - [Event.Deal](#v3-Event-Deal)
@@ -120,19 +126,56 @@
 | ----- | ---- | ----- | ----------- |
 | ids | [string](#string) | repeated | фильтр по id артиста |
 
+<a name="deals-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
 
+## deals.proto
 
+<a name="v3-Deal"></a>
 
+### Deal
 
- 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | id сделки |
+| obj | [string](#string) |  | получатель сделки |
+| subj | [string](#string) |  | инициатор сделки |
+| term | [Deal.Term](#v3-Deal-Term) |  | условия сделки |
+| status | [Deal.Status](#v3-Deal-Status) |  | статус сделки |
 
- 
+<a name="v3-Deal-Term"></a>
 
- 
+### Deal.Term
 
- 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| org | [Percentage](#v3-Percentage) |  | % организатора |
+| agent | [Percentage](#v3-Percentage) |  | % распространителя снизу от номинала билета |
+| extra | [Percentage](#v3-Percentage) |  | % распространителя сверху от номинала билета |
 
+<a name="v3-DealsRequest"></a>
 
+### DealsRequest
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated | фильтр по id сделок |
+| statuses | [Deal.Status](#v3-Deal-Status) | repeated | фильтр по статусам сделок |
+
+<a name="v3-Deal-Status"></a>
+
+### Deal.Status
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UNKNOWN | 0 | неизвестно |
+| OFFER | 1 | предложено |
+| ACCEPTED | 2 | принято |
+| REVOKED | 3 | предложение отозвано |
+| DECLINED | 4 | предложение отклонено |
+| TERMINATED | 5 | разорвана |
+| REVERSED | 6 | выдвинуто встречное предложение |
+| FINISHED | 7 | срок действия предложения или сделки истёк  |
 
 <a name="events-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
@@ -970,6 +1013,7 @@
 | Categories | [CategoriesRequest](#v3-CategoriesRequest) | [Category](#v3-Category) stream |  |
 | Cities | [CitiesRequest](#v3-CitiesRequest) | [City](#v3-City) stream |  |
 | Countries | [CountriesRequest](#v3-CountriesRequest) | [Country](#v3-Country) stream |  |
+| Deals | [DealsRequest](#v3-DealsRequest) | [Deal](#v3-Deal) stream |  |
 | Events | [EventsRequest](#v3-EventsRequest) | [Event](#v3-Event) stream |  |
 | Maps | [MapsRequest](#v3-MapsRequest) | [Map](#v3-Map) stream |  |
 | MetaEvents | [MetaEventsRequest](#v3-MetaEventsRequest) | [MetaEvent](#v3-MetaEvent) stream |  |
