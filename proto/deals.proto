@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package v3;
+
+import "generic.proto";
+
+message DealsRequest {
+    repeated string ids = 1;  // фильтр по id сделок
+    repeated Deal.Status statuses = 2;  // фильтр по статусам сделок
+}
+
+message Deal {
+  enum Status {
+    UNKNOWN = 0;  // неизвестно
+    OFFER = 1;  // предложение
+    ACCEPTED = 2;  // принято
+    REVOKED = 3;  // отозвано
+    DECLINED = 4;  // отклонено
+    TERMINATED = 5;  // завершено
+    REVERSED = 6;  // аннулировано
+    FINISHED = 7;  // исполнено
+  };
+  message Term {
+      Percentage org = 1;  // % организатора
+      Percentage agent = 2;  // % распространителя снизу от номинала билета
+      Percentage extra = 3;  // % распространителя сверху от номинала билета
+  };
+  string id = 1;  // id сделки
+  string obj = 4;  // получатель сделки
+  string subj = 5;  // инициатор сделки
+  Term term = 8;  // условия сделки
+  Status status = 9;  // статус сделки
+}
