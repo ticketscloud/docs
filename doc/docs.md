@@ -1066,7 +1066,7 @@
 | event | [string](#string) |  | мероприятие, к которому привязан тариф |
 | meta_event | [string](#string) |  | метамероприятие, к которому привязан тариф |
 | discount_percentage | [Percentage](#v3-Percentage) |  | % наценки / скидки |
-| discount_fix | [int64](#int64) |  | величина наценки / скидки в рублях |
+| discount_fix | [int64](#int64) |  | величина наценки / скидки в копейках |
 | lifetime | [Lifetime](#v3-Lifetime) |  | период действия тарифа |
 
 <a name="v3-TariffsRequest"></a>

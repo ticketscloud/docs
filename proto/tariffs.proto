@@ -20,7 +20,7 @@ message Tariff {
 
   oneof discount {
     Percentage discount_percentage = 8;  // % скидки
-    int64 discount_fix = 9;  // величина скидки в рублях
+    int64 discount_fix = 9;  // величина скидки в копейках
   }
   Lifetime lifetime = 10;  // период действия тарифа
 }
