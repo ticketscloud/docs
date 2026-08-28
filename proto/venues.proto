@@ -25,10 +25,17 @@ message MapsRequest {
 
 message Map {
   message Sector {
+    enum Type {
+      UNKNOWN = 0;  // неизвестный тип сектора
+      CHAIRS = 1;  // сектор с креслами
+      TABLES = 2;  // сектор с столами
+    }
+
     string id = 1;  // id сектора
     string name = 2;  // название сектора
     string description = 3;  // [O] описание сектора
     bool with_seats = 4;  // признак сектора с рассадкой
+    optional Type type = 5;  // тип сектора
   }
 
   message Seat {

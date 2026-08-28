@@ -101,6 +101,7 @@
     - [MapsRequest](#v3-MapsRequest)
     - [Venue](#v3-Venue)
     - [VenuesRequest](#v3-VenuesRequest)
+    - [Map.Sector.Type](#v3-Map-Sector-Type)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -1297,6 +1298,7 @@
 | name | [string](#string) |  | название сектора |
 | description | [string](#string) |  | [O] описание сектора |
 | with_seats | [bool](#bool) |  | признак сектора с рассадкой |
+| type | [Map.Sector.Type](#v3-Map-Sector-Type) | optional | тип сектора |
 
 
 
@@ -1371,6 +1373,19 @@
 
 
  
+
+
+<a name="v3-Map-Sector-Type"></a>
+
+### Map.Sector.Type
+
+
+| Name    | Number | Description |
+| ------- | ------ | ----------- |
+| UNKNOWN | 0 | неизвестный тип сектора |
+| CHAIRS  | 1 | сектор с креслами |
+| TABLES  | 2 | сектор с столами |
+
 
  
 
