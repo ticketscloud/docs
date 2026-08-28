@@ -21,6 +21,7 @@
     - [Event.TicketSet.Rule](#v3-Event-TicketSet-Rule)
     - [Event.TicketSet.Rule.SimpleType](#v3-Event-TicketSet-Rule-SimpleType)
     - [EventsRequest](#v3-EventsRequest)
+    - [PromoMaterial](#v3-PromoMaterial)
   
     - [Event.EventStatus](#v3-Event-EventStatus)
     - [Event.LegalRu.IPTaxes](#v3-Event-LegalRu-IPTaxes)
@@ -63,6 +64,18 @@
   
     - [Mod.ModType](#v3-Mod-ModType)
   
+- [promo_formats.proto](#promo_formats-proto)
+    - [PromoFormat](#v3-PromoFormat)
+    - [PromoFormatImage](#v3-PromoFormatImage)
+    - [PromoFormatsRequest](#v3-PromoFormatsRequest)
+  
+    - [PromoFormatImageType](#v3-PromoFormatImageType)
+    - [PromoFormatType](#v3-PromoFormatType)
+
+- [promo_materials.proto](#promo_materials-proto)
+    - [PromoMaterialRejected](#v3-PromoMaterialRejected)
+    - [PromoMaterialsRejectedRequest](#v3-PromoMaterialsRejectedRequest)
+
 - [seats.proto](#seats-proto)
     - [Seat](#v3-Seat)
     - [SeatsRequest](#v3-SeatsRequest)
@@ -215,6 +228,7 @@
 | tickets_amount_vacant | [uint32](#uint32) |  | количество свободных к продаже билетов в мероприятии |
 | smart_tickets | [Event.SmartTicketSetting](#v3-Event-SmartTicketSetting) |  | настройки смарт-билетов |
 | mods | [Mod](#v3-Mod) | repeated | дополнительная информация по скидкам на мероприятие |
+| promomaterials | [PromoMaterial](#v3-PromoMaterial) | repeated | Промоматериалы |
 | updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | дата и время последнего обновления информации о мероприятии |
 | additional | [google.protobuf.Any](#google-protobuf-Any) |  | служебное поле |
 
@@ -341,6 +355,19 @@
 
 
 
+
+<a name="v3-PromoMaterial"></a>
+
+### PromoMaterial
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | id промоматериала |
+| format | [string](#string) | optional | id промоформата |
+| url | [string](#string) |  | ссылка на промоматериал |
+| description | [string](#string) |  | описание промоматериала |
  
 
 
@@ -681,6 +708,7 @@
 | media | [Media](#v3-Media) |  | обложка группы мероприятий |
 | first_start | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | начало первого мероприятия в группе |
 | last_finish | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | конец последнего мероприятия в группе |
+| promomaterials | [PromoMaterial](#v3-PromoMaterial) | repeated | Промоматериалы |
 | additional | [google.protobuf.Any](#google-protobuf-Any) |  | служебное поле |
 
 
@@ -903,6 +931,93 @@
 
 
 
+<a name="promo_formats-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## promo_formats.proto
+
+
+
+<a name="v3-PromoFormat"></a>
+
+### PromoFormat
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | id промоформата |
+| place | [string](#string) |  | место размещения |
+| description | [string](#string) |  | дополнительное описание |
+| required | [bool](#bool) |  | обязателен или не |
+| type | [PromoFormatType](#v3-PromoFormatType) |  | тип промоматериала |
+| image | [PromoFormatImage](#v3-PromoFormatImage) |  | требования для type==IMAGE |
+
+<a name="v3-PromoFormatImage"></a>
+
+### PromoFormatImage
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| height | [uint32](#uint32) |  | высота картинки |
+| width | [uint32](#uint32) |  | ширина картинки |
+| size | [uint32](#uint32) |  | размер в байтах |
+| type | [PromoFormatImageType](#v3-PromoFormatImageType) |  | формат картинки |
+
+<a name="v3-PromoFormatsRequest"></a>
+
+### PromoFormatsRequest
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated | фильтр по id промоформата |
+
+<a name="v3-PromoFormatImageType"></a>
+
+### PromoFormatImageType
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UNKNOWN_IMAGE_TYPE | 0 |  |
+| JPG | 1 |  |
+| PNG | 2 |  |
+
+<a name="v3-PromoFormatType"></a>
+
+### PromoFormatType
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UNKNOWN_FORMAT_TYPE | 0 |  |
+| IMAGE | 1 |  |
+
+<a name="promo_materials-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## promo_materials.proto
+
+<a name="v3-PromoMaterialRejected"></a>
+
+### PromoMaterialRejected
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | id промоматериала |
+| agent | [string](#string) |  | id распространителя |
+| event | [string](#string) |  | id мероприятия |
+| meta_event | [string](#string) |  | id мета-мероприятия |
+| format | [string](#string) |  | id промоформата |
+| reason | [string](#string) |  | причина отказа |
+
+<a name="v3-PromoMaterialsRejectedRequest"></a>
+
+### PromoMaterialsRejectedRequest
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| event_ids | [string](#string) | repeated | фильтр по id мероприятия |
+| meta_event_ids | [string](#string) | repeated | фильтр по id мета-мероприятия |
+
 <a name="seats-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -1017,6 +1132,8 @@
 | Events | [EventsRequest](#v3-EventsRequest) | [Event](#v3-Event) stream |  |
 | Maps | [MapsRequest](#v3-MapsRequest) | [Map](#v3-Map) stream |  |
 | MetaEvents | [MetaEventsRequest](#v3-MetaEventsRequest) | [MetaEvent](#v3-MetaEvent) stream |  |
+| PromoMaterialsRejected | [PromoMaterialsRejectedRequest](#v3-PromoMaterialsRejectedRequest) | [PromoMaterialRejected](#v3-PromoMaterialRejected) stream |  |
+| PromoFormats | [PromoFormatsRequest](#v3-PromoFormatsRequest) | [PromoFormat](#v3-PromoFormat) stream |  |
 | Seats | [SeatsRequest](#v3-SeatsRequest) | [Seat](#v3-Seat) stream |  |
 | Tags | [TagsRequest](#v3-TagsRequest) | [Tag](#v3-Tag) stream |  |
 | Venues | [VenuesRequest](#v3-VenuesRequest) | [Venue](#v3-Venue) stream |  |

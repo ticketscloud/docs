@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package v3;
+
+message PromoMaterialsRejectedRequest {
+  repeated string event_ids = 1;       // фильтр по id мероприятия
+  repeated string meta_event_ids = 2;  // фильтр по id мета-мероприятия
+}
+
+message PromoMaterialRejected {
+  string id = 1;      // id промоматериала
+  string agent = 2;   // id распространителя
+  oneof event_or_meta_event {
+    string event = 3;       // id мероприятия
+    string meta_event = 6;  // id мета-мероприятия
+  }
+  string format = 4;  // id промоформата
+  string reason = 5;  // причина отказа
+}

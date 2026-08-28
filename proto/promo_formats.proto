@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package v3;
+
+message PromoFormatsRequest {
+  repeated string ids = 1;  // фильтр по id промоформата
+}
+
+enum PromoFormatImageType {
+  UNKNOWN_IMAGE_TYPE = 0;
+  JPG = 1;
+  PNG = 2;
+}
+
+message PromoFormatImage {
+  uint32 height = 1;  // высота картинки
+  uint32 width = 2;   // ширина картинки
+  uint32 size = 3;    // размер в байтах
+  PromoFormatImageType type = 4;  // формат картинки
+}
+
+enum PromoFormatType {
+  UNKNOWN_FORMAT_TYPE = 0;
+  IMAGE = 1;
+}
+
+message PromoFormat {
+  string id = 1;  // id промоформата
+  string place = 2;  // место размещения
+  string description = 3;  // дополнительное описание
+  bool required = 4;  // обязателен или не
+  PromoFormatType type = 5;  // тип промоматериала
+  oneof requirements {  // требования к промоматериалу
+    PromoFormatImage image = 6;  // требования для type==IMAGE
+  }
+}

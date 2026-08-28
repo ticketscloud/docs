@@ -7,6 +7,8 @@ import "deals.proto";
 import "events.proto";
 import "geo.proto";
 import "meta_events.proto";
+import "promo_formats.proto";
+import "promo_materials.proto";
 import "seats.proto";
 import "tags.proto";
 import "venues.proto";
@@ -20,6 +22,8 @@ service Simple {
   rpc Events(EventsRequest) returns (stream Event);
   rpc Maps(MapsRequest) returns (stream Map);
   rpc MetaEvents(MetaEventsRequest) returns (stream MetaEvent);
+  rpc PromoMaterialsRejected(PromoMaterialsRejectedRequest) returns (stream PromoMaterialRejected);
+  rpc PromoFormats(PromoFormatsRequest) returns (stream PromoFormat);
   rpc Seats(SeatsRequest) returns (stream Seat);
   rpc Tags(TagsRequest) returns (stream Tag);
   rpc Venues(VenuesRequest) returns (stream Venue);

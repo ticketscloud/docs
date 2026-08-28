@@ -6,6 +6,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/any.proto";
 
 import "generic.proto";
+import "events.proto";
 
 
 message MetaEventsRequest {
@@ -24,6 +25,8 @@ message MetaEvent {
 
   google.protobuf.Timestamp first_start = 7;  // начало первого мероприятия в группе
   google.protobuf.Timestamp last_finish = 8;  // конец последнего мероприятия в группе
+
+  repeated PromoMaterial promomaterials = 51;  // Промоматериалы
 
   google.protobuf.Any additional = 255; // служебное поле
 }
