@@ -10,9 +10,8 @@
 - площадки проведения мероприятий ([Venues](doc/docs.md#Venue), схемы расположения ([Maps](doc/docs.md#Map)) зрительских мест ([Seats](doc/docs.md#Seat));
 - справочник стран ([Countries](doc/docs.md#CountriesRequest)) и городов ([Cities](doc/docs.md#CitiesRequest));
 - сведения об артистах ([Artists](doc/docs.md#Artist)).
-
-## gRPC API -- поддерживаемые запросы и структуры данных
-
+- заключённые сделки ([Deals](doc/docs.md#DealsRequest)) и обмен промоматериалами ([PromoFormats](doc/docs.md#PromoFormatsRequest) и [PromoMaterialsRejected](doc/docs.md#PromoMaterialsRejectedRequest))
+ 
 [API reference](doc/docs.md)
 
 NB:
