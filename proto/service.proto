@@ -11,6 +11,7 @@ import "promo_formats.proto";
 import "promo_materials.proto";
 import "seats.proto";
 import "tags.proto";
+import "tariffs.proto";
 import "venues.proto";
 
 service Simple {
@@ -26,5 +27,6 @@ service Simple {
   rpc PromoFormats(PromoFormatsRequest) returns (stream PromoFormat);
   rpc Seats(SeatsRequest) returns (stream Seat);
   rpc Tags(TagsRequest) returns (stream Tag);
+  rpc Tariffs(TariffsRequest) returns (stream Tariff);
   rpc Venues(VenuesRequest) returns (stream Venue);
 }
