@@ -19,7 +19,7 @@ message Tariff {
   string meta_event = 5;  // метамероприятие, к которому привязан тариф
 
   oneof discount {
-    Percentage discount_percentage = 8;  // % скидки
+    SignedPercentage discount_percentage = 8;  // % скидки
     int64 discount_fix = 9;  // величина скидки в копейках
   }
   Lifetime lifetime = 10;  // период действия тарифа

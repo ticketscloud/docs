@@ -17,6 +17,14 @@ message Percentage {
   fixed32 nanos = 2;
 }
 
+message SignedPercentage {
+  // Whole units part of the amount
+  int32 units = 1;
+  // Nano units of the amount (10^-9)
+  // Must be same sign as units
+  sfixed32 nanos = 2;
+}
+
 message Media {
   string cover = 1;  // [O]
   string cover_small = 2;  // [O]
