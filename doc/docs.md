@@ -38,6 +38,7 @@
     - [LiftimeFilter](#v3-LiftimeFilter)
     - [Media](#v3-Media)
     - [Percentage](#v3-Percentage)
+    - [SignedPercentage](#v3-SignedPercentage)
     - [TimestampFilter](#v3-TimestampFilter)
   
 - [geo.proto](#geo-proto)
@@ -568,6 +569,22 @@
 | ----- | ---- | ----- | ----------- |
 | units | [int32](#int32) |  | Whole units part of the amount |
 | nanos | [fixed32](#fixed32) |  | Nano units of the amount (10^-9) Must be same sign as units |
+
+
+
+
+
+
+<a name="v3-SignedPercentage"></a>
+
+### SignedPercentage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| units | [int32](#int32) |  | Whole units part of the amount |
+| nanos | [sfixed32](#sfixed32) |  | Nano units of the amount (10^-9) Must be same sign as units |
 
 
 
@@ -1227,7 +1244,7 @@
 | description | [string](#string) |  | описание |
 | event | [string](#string) |  | мероприятие, к которому привязан тариф |
 | meta_event | [string](#string) |  | метамероприятие, к которому привязан тариф |
-| discount_percentage | [Percentage](#v3-Percentage) |  | % наценки / скидки |
+| discount_percentage | [SignedPercentage](#v3-SignedPercentage) |  | % наценки / скидки |
 | discount_fix | [int64](#int64) |  | величина наценки / скидки в копейках |
 | lifetime | [Lifetime](#v3-Lifetime) |  | период действия тарифа |
 
